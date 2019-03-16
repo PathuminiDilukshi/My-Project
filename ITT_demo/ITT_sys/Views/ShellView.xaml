@@ -1,0 +1,75 @@
+﻿<Window x:Class="ITT_sys.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ITT_sys.Attachedproperties"
+        xmlns:vm="clr-namespace:ITT_sys.ViewModels"
+        xmlns:models="clr-namespace:ITT_sys.Models"
+        mc:Ignorable="d"
+        Title="ShellView" Height="550" Width="550" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Style="{StaticResource loginWindow}">
+
+
+    <Border  Opacity=".85" Background="#FF2F324F">
+        <Grid HorizontalAlignment="Center" >
+            <Grid.BindingGroup>
+                <BindingGroup/>
+            </Grid.BindingGroup>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+
+            <!--sign in label-->
+            <TextBlock Grid.Row="1" Style="{StaticResource TitleControlStyle}" Grid.ColumnSpan="2" Margin="135,20" >SIGN IN</TextBlock>
+
+            <!--user name-->
+            <TextBlock Grid.Row="2" Style="{StaticResource LabelControlStyle}" Grid.ColumnSpan="2">USERNAME</TextBlock>
+            <TextBox Validation.ErrorTemplate="{StaticResource errorTemplate}"  Text="{Binding Username,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                      Grid.Row="3" Name="UserNametxt" Style="{StaticResource InputControlStyle}" Grid.ColumnSpan="2" Margin="0,1,0,0">
+            </TextBox>
+
+
+
+            <!--Email-->
+            <TextBlock Grid.Row="4" Style="{StaticResource LabelControlStyle}" Grid.ColumnSpan="2">EMAIL</TextBlock>
+            <TextBox  Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding Email , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                      Grid.Row="5" Name="EmailTxt" Style="{StaticResource InputControlStyle}" Grid.ColumnSpan="2" Margin="0,0,0,1">
+
+            </TextBox>
+
+
+            <!-- password and confirm password-->
+            <TextBlock Grid.Row="6" Style="{StaticResource LabelControlStyle}" Grid.ColumnSpan="2" >PASSWORD</TextBlock>
+            <PasswordBox   Name="Passwordtxt"  Validation.ErrorTemplate="{StaticResource errorTemplate}"
+                          Grid.Row="7"  Style="{StaticResource InputControlStyle}" Grid.ColumnSpan="2" Margin="0,1,0,0" ></PasswordBox>
+
+            <TextBlock Grid.Row="8" Style="{StaticResource LabelControlStyle}" Grid.ColumnSpan="2">CONFIRM PASSWORD</TextBlock>
+            <PasswordBox x:Name="ConfirmPassword" Grid.Row="9"  Style="{StaticResource InputControlStyle}"
+                         Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.ColumnSpan="2" Margin="0,0,0,1"></PasswordBox>
+
+
+            <!--log in button-->
+            <Button x:Name="SignIn_btn_click"  Grid.Row="10" Style="{StaticResource SignButtonStyle}" Command="{Binding Passwordtxt ,ElementName=Passwordtxt}" Grid.ColumnSpan="2" Margin="0,25,0,16" >SIGN IN</Button>
+
+
+
+        </Grid>
+    </Border>
+</Window>
