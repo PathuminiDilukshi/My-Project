@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ITT_sys.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace ITT_sys.Views
         public RegisterBankView()
         {
             InitializeComponent();
+            DataContext = new RegisterBankViewModel();
         }
     }
 }

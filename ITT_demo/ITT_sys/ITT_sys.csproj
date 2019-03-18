@@ -99,11 +99,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attachedproperties\PasswordBoxProperties.cs" />
-    <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\RegisterBankModel.cs" />
     <Compile Include="Models\UserInfo.cs" />
-    <Compile Include="ViewModels\Commands\RelayCommand.cs" />
+    <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\Commands\ValidationsCommand.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\DB_Connection\DBCon.cs" />
     <Compile Include="ViewModels\RegisterBankViewModel.cs" />
     <Compile Include="ViewModels\RegisterBranchViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ITT_sys.Views"
+             xmlns:m="clr-namespace:ITT_sys.ViewModels"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
@@ -15,9 +16,9 @@
              FontFamily="{StaticResource MaterialDesignFont}"
              mc:Ignorable="d" 
              HorizontalAlignment="Stretch"
-	        VerticalAlignment="Stretch"
-	        HorizontalContentAlignment="Stretch"
-	        VerticalContentAlignment="Stretch">
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch">
     <Border Padding="10">
         <StackPanel >
             <Grid Margin="0 25 0 10 ">
@@ -36,7 +37,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Bank Code" Grid.Column="0" Margin="15 10 "/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding BankCode }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
             </Grid>
 
             <!--Bank Name-->
@@ -47,7 +48,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Bank Name" Grid.Column="0" Margin="15 10 " Grid.ColumnSpan="2"/>
-                <TextBox Grid.Column="1" Margin="10,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                <TextBox Grid.Column="1" Margin="10,10,140,10" Text="{Binding BankName }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
             </Grid>
 
             <!--Address Line1-->
@@ -58,7 +59,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Address Line1" Grid.Column="0" Margin="15,10,0,10"/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding AddressLine1 }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
             </Grid>
 
             <!--Address Line2-->
@@ -69,7 +70,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Address Line2" Grid.Column="0" Margin="15,10,0,10"   />
-                <TextBox Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding AddressLine2 }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
             </Grid>
 
             <!--Address Line3-->
@@ -80,7 +81,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Address Line3" Grid.Column="0" Margin="15,10,0,10"/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding AddressLine3 }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
             </Grid>
 
             <!--Contact no-->
@@ -91,7 +92,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Contact no" Grid.Column="0" Margin="15 10 "/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding ContactNo }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
             </Grid>
 
             <!--Email-->
@@ -102,8 +103,8 @@
                     <ColumnDefinition Width="193*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Email" Grid.Column="0" Margin="15 10 "/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" Grid.ColumnSpan="2"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                 <TextBlock Text="Email" Grid.Column="0" Margin="15 10 "/>
+                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding Email }" Grid.ColumnSpan="2"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
             </Grid>
 
             <!--buttons-->
@@ -113,8 +114,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
-                <Button Margin="30 0 100 0" Grid.Column="1" Content="Cancel" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
+                <Button Margin="100 0 30 0" Grid.Column="0"     Background="#FF070D3A" BorderBrush="#FF0B0F1F" Command="{Binding SaveCommand}">Register</Button>
+                <Button Margin="30 0 100 0" Grid.Column="1" Background="#FF070D3A" BorderBrush="#FF0B0F1F">Cancel</Button>
 
             </Grid>
         </StackPanel>

@@ -20,13 +20,7 @@ namespace ITT_sys.ViewModels
 {
     public class ShellViewModel : ValidationsCommand, IDataErrorInfo
     {
-        public RelayCommand _replayCommand { get; set; }
-        
-        public ShellViewModel()
-        {
-            // relaycommand recieves a shellviewmodel 
-            this._replayCommand = new RelayCommand(this);
-        }
+       
 
 
         public void SignIn_btn_click()
