@@ -24,7 +24,7 @@ namespace ITT_sys.ViewModels.DB_Connection
 
         public void connection_Sql()
         {
-            ConString = @"Data Source=(local);Initial Catalog=ITT_demo;User ID=sa;";
+            ConString = @"Data Source=(local);Initial Catalog=ITT_demo;User ID=sa;Password=abc123;";
             con = new SqlConnection(ConString);
         }
 

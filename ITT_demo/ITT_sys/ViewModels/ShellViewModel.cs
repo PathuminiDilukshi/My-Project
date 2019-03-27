@@ -76,8 +76,6 @@ namespace ITT_sys.ViewModels
                    
                 }
 
-               
-
                 return error;
             }
         }

@@ -24,7 +24,7 @@ namespace ITT_sys.Views
         public RegisterBankView()
         {
             InitializeComponent();
-            DataContext = new RegisterBankViewModel();
+            
         }
     }
 }

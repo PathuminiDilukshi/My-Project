@@ -18,19 +18,27 @@ namespace ITT_sys.ViewModels.Commands
         {
             _execute = execute;
         }
+
+
         public DelegateCommand(Action execute, Func<bool> canExecute)
         {
             _execute = execute;
             _canExecute = canExecute;
         }
+
+
         public void Execute(object parameter)
         {
             _execute();
         }
+
+
         public bool CanExecute(object parameter)
         {
             return _canExecute();
         }
+
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }

@@ -37,7 +37,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Bank Code" Grid.Column="0" Margin="15 10 "/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding BankCode }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                <TextBox Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding BankCode , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" x:Name="BankCode" Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
             </Grid>
 
             <!--Bank Name-->
@@ -48,7 +48,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Bank Name" Grid.Column="0" Margin="15 10 " Grid.ColumnSpan="2"/>
-                <TextBox Grid.Column="1" Margin="10,10,140,10" Text="{Binding BankName }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                <TextBox x:Name="BankName" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding BankName , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="10,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
             </Grid>
 
             <!--Address Line1-->
@@ -59,7 +59,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Address Line1" Grid.Column="0" Margin="15,10,0,10"/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding AddressLine1 }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                <TextBox  x:Name="AddressLine1" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding AddressLine1 , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
             </Grid>
 
             <!--Address Line2-->
@@ -70,7 +70,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Address Line2" Grid.Column="0" Margin="15,10,0,10"   />
-                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding AddressLine2 }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                <TextBox   x:Name="AddressLine2"  Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding AddressLine2 , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
             </Grid>
 
             <!--Address Line3-->
@@ -81,7 +81,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Address Line3" Grid.Column="0" Margin="15,10,0,10"/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding AddressLine3 }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                <TextBox x:Name="AddressLine3" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding AddressLine3 , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
             </Grid>
 
             <!--Contact no-->
@@ -92,7 +92,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Contact no" Grid.Column="0" Margin="15 10 "/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding ContactNo }" SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                <TextBox  x:Name="ContactNo" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding ContactNo , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
             </Grid>
 
             <!--Email-->
@@ -104,7 +104,7 @@
                 </Grid.ColumnDefinitions>
 
                  <TextBlock Text="Email" Grid.Column="0" Margin="15 10 "/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" Text="{Binding Email }" Grid.ColumnSpan="2"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                <TextBox  x:Name="Email" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding Email , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="5,10,140,10"  Grid.ColumnSpan="2"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
             </Grid>
 
             <!--buttons-->
@@ -114,9 +114,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="100 0 30 0" Grid.Column="0"     Background="#FF070D3A" BorderBrush="#FF0B0F1F" Command="{Binding SaveCommand}">Register</Button>
-                <Button Margin="30 0 100 0" Grid.Column="1" Background="#FF070D3A" BorderBrush="#FF0B0F1F">Cancel</Button>
+                <Button x:Name="Save" Command="{Binding Path= SaveCommand}" Margin="100 0 30 0" Grid.Column="0"     Background="#FF070D3A" BorderBrush="#FF0B0F1F" >Register</Button>
+                <Button x:Name="Clear"  Margin="30 0 100 0" Grid.Column="1" Background="#FF070D3A" BorderBrush="#FF0B0F1F">Clear</Button>
 
+            </Grid>
+            <Grid>
+                <Label  x:Name="CalculatorOutput" Content="{Binding Path=CalculatorOutput, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  />
             </Grid>
         </StackPanel>
     </Border>

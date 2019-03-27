@@ -131,7 +131,7 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
+                <Button  Command="{Binding Path= SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
                 <Button Margin="30 0 100 0" Grid.Column="1" Content="Cancel" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
 
             </Grid>
