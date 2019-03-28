@@ -31,7 +31,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Bank Code" Grid.Column="0" Margin="15,10,0,10" />
-                <ComboBox Grid.Column="1" Margin="5,10,140,10" Grid.ColumnSpan="1"/>
+                <ComboBox Name="ComboBox" Grid.Column="1" Margin="5,10,140,10" Grid.ColumnSpan="1"/>
             </Grid>
 
             <!--Bank Name-->

@@ -47,8 +47,8 @@
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Bank Name" Grid.Column="0" Margin="15 10 " Grid.ColumnSpan="2"/>
-                <TextBox x:Name="BankName" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding BankName , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="10,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                <TextBlock Text="Bank Name" Grid.Column="0" Margin="15 10 "/>
+                <TextBox x:Name="BankName" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding BankName , ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
             </Grid>
 
             <!--Address Line1-->
@@ -115,12 +115,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="Save" Command="{Binding Path= SaveCommand}" Margin="100 0 30 0" Grid.Column="0"     Background="#FF070D3A" BorderBrush="#FF0B0F1F" >Register</Button>
-                <Button x:Name="Clear"  Margin="30 0 100 0" Grid.Column="1" Background="#FF070D3A" BorderBrush="#FF0B0F1F">Clear</Button>
+                <Button x:Name="Clearbtn"  Margin="30 0 100 0" Grid.Column="1" Background="#FF070D3A" BorderBrush="#FF0B0F1F">Clear</Button>
 
             </Grid>
-            <Grid>
-                <Label  x:Name="CalculatorOutput" Content="{Binding Path=CalculatorOutput, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  />
-            </Grid>
+           
         </StackPanel>
     </Border>
 </UserControl>

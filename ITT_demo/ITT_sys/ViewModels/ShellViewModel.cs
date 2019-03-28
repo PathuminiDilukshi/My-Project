@@ -71,9 +71,9 @@ namespace ITT_sys.ViewModels
                         error = ValidateUserName();
                         break;
                     case "Email" :
+                   
                         error = ValidateEmail();
                         break;
-                   
                 }
 
                 return error;
