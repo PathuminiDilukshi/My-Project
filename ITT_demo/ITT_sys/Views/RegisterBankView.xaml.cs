@@ -24,7 +24,12 @@ namespace ITT_sys.Views
         public RegisterBankView()
         {
             InitializeComponent();
+          
             
         }
+
+       
+
+     
     }
 }

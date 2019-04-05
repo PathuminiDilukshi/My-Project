@@ -11,18 +11,7 @@ namespace ITT_sys.Models
 {
     public class RegisterBankModel : ValidationsCommand
     {
-        private Visibility _MessageVisibilty; 
- 
-
-
-        public Visibility MessageVisibilty 
-        {
-            get { return _MessageVisibilty; } 
-            set
-            { 
-                OnPropertyChanged(ref _MessageVisibilty, value);
-            } 
-        }  
+     
         
         public string BankCode
         {

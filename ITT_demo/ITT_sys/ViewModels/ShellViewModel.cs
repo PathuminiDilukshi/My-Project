@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Input;
 using ITT_sys.ViewModels.Commands;
 using ITT_sys.Models;
+using ITT_sys.ViewModels.DB_Connection;
 
 
 
@@ -20,17 +21,15 @@ namespace ITT_sys.ViewModels
 {
     public class ShellViewModel : ValidationsCommand, IDataErrorInfo
     {
-       
 
+        private ShellModel _shellModel;
 
-        public void SignIn_btn_click()
-        {
-           
-
-        }
+        #region properties
 
         private string _username;
         private string _email;
+        private string _passwordtxt;
+        private string _confirmPassword;
 
        
 
@@ -55,6 +54,27 @@ namespace ITT_sys.ViewModels
         }
 
 
+
+        public string Passwordtxt
+        {
+            get { return _passwordtxt; }
+            set { _passwordtxt = value; }
+        }
+
+
+     
+
+        public string ConfirmPassword
+        {
+            get { return _confirmPassword; }
+            set { _confirmPassword = value; }
+        }
+
+
+        #endregion
+
+
+        #region validations
         public string Error { get { return null; } }
 
 
@@ -126,11 +146,71 @@ namespace ITT_sys.ViewModels
                return "Username must be a minimum of 5 characters.";
             return null;
         }
+        #endregion
 
-      
-      
 
-       
+
+        #region buttin_click
+
+        DBCon DB_Con = new DBCon();
+
+        public ShellModel ShellModel
+        {
+            get { return _shellModel; }
+            set
+            {
+                OnPropertyChanged(ref _shellModel, value);
+            }
+        }
+
+        public ICommand SaveCommand { get; private set; }
+
+        public bool CanSave
+        {
+            get
+            {
+                return true;
+
+            }
+
+
+        }
+
+        public void Save()
+        {
+          
+            try
+            {
+                SaveCommand = new DelegateCommand(Save, () => CanSave);
+
+                string query = "INSERT INTO User_details(User_Name,Email,Password) values('" + this.Username + "','" + this.Email + "','" + this.Passwordtxt + "');";
+
+
+                    int noline = DB_Con.insert_del_update(query);
+
+                    if (noline > 0)
+                    {
+                        MessageBox.Show("Data inserted Successfully");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Try again!");
+
+                    }
+
+
+            }
+
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        #endregion
     }
 
 }

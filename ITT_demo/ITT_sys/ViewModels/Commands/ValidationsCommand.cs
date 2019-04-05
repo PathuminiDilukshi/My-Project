@@ -17,13 +17,6 @@ namespace ITT_sys.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-      /*protected virtual void OnPropertyChanged(string propertyName)
-        {
-
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-         
-        }*/
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

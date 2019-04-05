@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ITT_sys.Views.BankRecordsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             >
+
+<Border Padding="10">
+    <Grid >
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=MysampleGrid,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"  >
+            <DataGrid.Columns>
+            <DataGridTextColumn Header="BankCode" Binding="{Binding BankCode}" />
+            <DataGridTextColumn Header="BankName" Binding="{Binding  BankName}"/>
+            <DataGridTextColumn Header="AddressLine1" Binding="{Binding  AddressLine1 }" />
+            <DataGridTextColumn Header="AddressLine2" Binding="{Binding  AddressLine2 }" />
+            <DataGridTextColumn Header="AddressLine3" Binding="{Binding  AddressLine3 }" />
+            <DataGridTextColumn Header="ContactNo" Binding="{Binding  ContactNo }" />
+            <DataGridTextColumn Header="Email" Binding="{Binding  Email }" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Border>
+</UserControl>

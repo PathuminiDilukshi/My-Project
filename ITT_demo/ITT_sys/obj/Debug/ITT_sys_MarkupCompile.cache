@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\App.xaml
-6-658522311
+71152723348
 
-22818739897
-761934893204
-Views\DashboardView.xaml;Views\LogInView.xaml;Views\RegisterBankView.xaml;Views\RegisterBranchView.xaml;Views\ShellView.xaml;Views\SupplierRegisterView.xaml;
+25657648929
+77-767246942
+Views\BankRecordsView.xaml;Views\DashboardView.xaml;Views\LogInView.xaml;Views\RegisterBankView.xaml;Views\RegisterBranchView.xaml;Views\ShellView.xaml;Views\SupplierRegisterView.xaml;
 
 False
 

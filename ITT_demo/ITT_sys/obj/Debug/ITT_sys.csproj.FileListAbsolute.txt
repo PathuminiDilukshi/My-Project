@@ -48,6 +48,7 @@ C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\Caliburn.Micro.Platform.Core.dll
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\Caliburn.Micro.Platform.dll
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\ControlzEx.dll
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\Dragablz.dll
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MahApps.Metro.dll
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MaterialDesignColors.dll
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MaterialDesignThemes.MahApps.dll
@@ -57,12 +58,16 @@ C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\Caliburn.Micro.Platform.xml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\Caliburn.Micro.Platform.Core.xml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\ControlzEx.pdb
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\Dragablz.pdb
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\Dragablz.xml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MahApps.Metro.pdb
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MahApps.Metro.xml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\BankRecordsView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\LogInView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\SupplierRegisterView.baml
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\BankRecordsView.g.cs
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\DashboardView.g.cs
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\LogInView.g.cs
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\RegisterBankView.g.cs
