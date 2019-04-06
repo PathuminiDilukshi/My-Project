@@ -136,46 +136,56 @@ namespace ITT_sys.ViewModels
 		#endregion
 
 		# region regionstation page_button_click
-		public void Save()
-		{
-			
-				 try
-				 {
-					 SaveCommand = new DelegateCommand(Save, () => CanSave);
-					 if (!string.IsNullOrEmpty(BankCode) && !string.IsNullOrEmpty(BankCode))
-					 {
-						 string query = "INSERT INTO Bank_details(Bank_Code,Bank_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no) values('" + this.BankCode + "','" + this.BankName + "','" + this.AddressLine1 + "','" + this.AddressLine2 + "','" + this.AddressLine3 + "','" + this.Email + "','" + this.ContactNo + "');";
+        public void Save()
+        {
+            SaveCommand = new DelegateCommand(Save, () => CanSave);
+            string Query = "select COUNT(*) from Bank_details where Bank_Code='" + this.BankCode + "'";
+
+            int lines = DB_Con.RecordExists(Query);
+
+            if (lines > 0)
+            {
+                MessageBox.Show("Bank Code is in the dataBase ");
+            }
+            else
+            {
+                try
+                {
+                 
+
+                    if (!string.IsNullOrEmpty(BankCode) && !string.IsNullOrEmpty(BankCode))
+                    {
+                        string query = "INSERT INTO Bank_details(Bank_Code,Bank_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no) values('" + this.BankCode + "','" + this.BankName + "','" + this.AddressLine1 + "','" + this.AddressLine2 + "','" + this.AddressLine3 + "','" + this.Email + "','" + this.ContactNo + "');";
 
 
-                         int noline = DB_Con.insert(query);
+                        int noline = DB_Con.insert(query);
 
-						 if (noline > 0)
-						 {
-							 MessageBox.Show("Data inserted Successfully");
+                        if (noline > 0)
+                        {
+                            MessageBox.Show("Data inserted Successfully");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Try again!");
 
-						 }
-						 else
-						 {
-							 MessageBox.Show("Try again!");
-
-						 }
-					 }
-					 else
-					 {
-						 MessageBox.Show("Please Enter Bank Code and Name ");
-					 }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Enter Bank Code and Name ");
+                    }
 
 
-				 }
-		  
+                }
 
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.ToString());
-			}
 
-		}
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
 
+            }
+        }
 		public void Clearbtn()
 		{
 			Clear();
@@ -587,7 +597,6 @@ namespace ITT_sys.ViewModels
 
 		 public void Delete()
 		 {
-
 			 try
 			 {
 				 SaveCommand = new DelegateCommand(Delete, () => CanSave);
@@ -606,8 +615,6 @@ namespace ITT_sys.ViewModels
 				 }
 
 			 }
-
-
 			 catch (Exception ex)
 			 {
 				 MessageBox.Show(ex.ToString());

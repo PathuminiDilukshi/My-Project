@@ -4,21 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             >
+             xmlns:local="clr-namespace:ITT_sys.Views"
+             xmlns:m="clr-namespace:ITT_sys.ViewModels"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextElement.FontFamily="Segoe WP"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{StaticResource MaterialDesignFont}"
+             Height="1000" >
 
 <Border Padding="10">
-    <Grid >
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=MysampleGrid,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"  >
-            <DataGrid.Columns>
-            <DataGridTextColumn Header="BankCode" Binding="{Binding BankCode}" />
-            <DataGridTextColumn Header="BankName" Binding="{Binding  BankName}"/>
-            <DataGridTextColumn Header="AddressLine1" Binding="{Binding  AddressLine1 }" />
-            <DataGridTextColumn Header="AddressLine2" Binding="{Binding  AddressLine2 }" />
-            <DataGridTextColumn Header="AddressLine3" Binding="{Binding  AddressLine3 }" />
-            <DataGridTextColumn Header="ContactNo" Binding="{Binding  ContactNo }" />
-            <DataGridTextColumn Header="Email" Binding="{Binding  Email }" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
-</Border>
+        <Grid x:Name="PanelContainer" Width="954" Grid.Column="1" Grid.Row="1" Background="White">
+            <ScrollViewer Margin="10,0,-10,0">
+                <Grid Grid.RowSpan="5" Grid.ColumnSpan="4" >
+                    <DataGrid CanUserReorderColumns="True" CanUserResizeColumns="True"  CanUserResizeRows="False" CanUserSortColumns="True" AutoGenerateColumns="False" ItemsSource="{Binding Path=MysampleGrid,Mode=OneWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="BankCode" Binding="{Binding BankCode}"  Width="SizeToCells" IsReadOnly="True" />
+                            <DataGridTextColumn Header="BankName" Binding="{Binding  BankName}" Width="SizeToCells" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="AddressLine1" Binding="{Binding  AddressLine1 }"  Width="SizeToCells" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="AddressLine2" Binding="{Binding  AddressLine2 }"  Width="SizeToCells" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="AddressLine3" Binding="{Binding  AddressLine3 }" Width="SizeToCells" IsReadOnly="True" />
+                            <DataGridTextColumn Header="ContactNo" Binding="{Binding  ContactNo }"  Width="SizeToCells" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding  Email }" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Border>
 </UserControl>

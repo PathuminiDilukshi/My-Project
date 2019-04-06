@@ -63,18 +63,31 @@ namespace ITT_sys.ViewModels.DB_Connection
         public int insert(string query)
         {
             using (SqlConnection myCon = new SqlConnection(connectionstring))
-                      {
+            {
 
                 myCon.Open();
                 int line = 0;
-                com = new SqlCommand(query, con);
+                com = new SqlCommand(query, myCon);
                 line = com.ExecuteNonQuery();
-                
+                com.Dispose();
+                myCon.Close();
                 return line;
 
             }
-        } 
+        }
 
-           
+        public int RecordExists(string query)
+        {
+            using (SqlConnection myCon = new SqlConnection(connectionstring))
+            {
+                myCon.Open();
+                int recordCount = 0;
+                com = new SqlCommand(query, myCon);
+                recordCount = Convert.ToInt32(com.ExecuteScalar());
+                com.Dispose();
+                myCon.Close();
+                return recordCount;
+            }
+        }   
     }
 }

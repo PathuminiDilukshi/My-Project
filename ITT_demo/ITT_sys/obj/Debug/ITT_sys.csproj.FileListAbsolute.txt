@@ -88,4 +88,3 @@ C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.csproj.GenerateResource.Cache
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.exe
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.pdb
-C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.csprojResolveAssemblyReference.cache
