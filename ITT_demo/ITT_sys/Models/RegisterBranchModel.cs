@@ -12,6 +12,58 @@ namespace ITT_sys.Models
 {
     public class RegisterBranchModel
     {
-        public String id { get; set; }
+        public string BankCode
+        {
+            get;
+            set;
+
+        }
+        public string BranchCode
+        {
+            get;
+            set;
+
+        }
+        public string BranchName
+        {
+            get;
+            set;
+
+        }
+        public string AddressLine1
+        {
+            get;
+            set;
+
+        }
+        public string AddressLine2
+        {
+            get;
+            set;
+
+        }
+        public string AddressLine3
+        {
+            get;
+            set;
+
+        }
+        public string ContactNo
+        {
+            get;
+            set;
+
+        }
+        public string Email
+        {
+            get;
+            set;
+
+        }
+
+        public string BankName { get; set; }
+
+        public string BranchCode_update { get; set; }
+      
     }
 }

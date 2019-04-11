@@ -44,6 +44,102 @@ namespace ITT_sys.Views {
     /// </summary>
     public partial class SupplierRegisterView : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
+        
+        #line 35 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox SupplierName;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 39 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox ContactPerson;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 51 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox ContactNo;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 55 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox MobileNo;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 67 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox AddrLine1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 71 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox AddrLine2;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 83 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox AddrLine3;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 87 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox Email;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 103 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox BankName;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 107 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox BranchName;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 119 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox ChequeName;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 123 "..\..\..\Views\SupplierRegisterView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox AccountNo;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -72,6 +168,45 @@ namespace ITT_sys.Views {
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {
+            switch (connectionId)
+            {
+            case 1:
+            this.SupplierName = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 2:
+            this.ContactPerson = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 3:
+            this.ContactNo = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 4:
+            this.MobileNo = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 5:
+            this.AddrLine1 = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 6:
+            this.AddrLine2 = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 7:
+            this.AddrLine3 = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 8:
+            this.Email = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 9:
+            this.BankName = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 10:
+            this.BranchName = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 11:
+            this.ChequeName = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 12:
+            this.AccountNo = ((System.Windows.Controls.TextBox)(target));
+            return;
+            }
             this._contentLoaded = true;
         }
     }

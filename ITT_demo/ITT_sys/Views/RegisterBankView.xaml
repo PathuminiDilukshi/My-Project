@@ -18,7 +18,7 @@
              mc:Ignorable="d" Height="1000"  
              >
     <Border Padding="10">
-   
+
         <StackPanel >
             <dragablz:TabablzControl >
                 <dragablz:TabablzControl.InterTabController>
@@ -229,8 +229,8 @@
                             <Button Margin="30 0 100 0" Grid.Column="1" Content="Cancel" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
 
                         </Grid>
-                        
-                        
+
+
                     </StackPanel>
                 </TabItem>
                 <!--Delete item header-->
@@ -344,10 +344,14 @@
                 </TabItem>
             </dragablz:TabablzControl>
 
-            <Grid Width="954" Grid.Column="1" Grid.Row="1" Background="White">
-                <ScrollViewer Margin="10,0,-10,0">
-                    <Grid Grid.RowSpan="5" Grid.ColumnSpan="4" >
-                        <ContentControl  x:Name="ActiveItem" />
+            <Grid Width="954"  Background="White">
+                <ScrollViewer Margin="10,0,-10,0" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="283*"/>
+                            <ColumnDefinition Width="654*"/>
+                        </Grid.ColumnDefinitions>
+                        <ContentControl  x:Name="ActiveItem"  Width="954" ScrollViewer.VerticalScrollBarVisibility="Auto" MouseWheel="ActiveItem_MouseWheel" Grid.ColumnSpan="2" Margin="0,0,-17,0"/>
                     </Grid>
                 </ScrollViewer>
             </Grid>

@@ -1,11 +1,12 @@
 ﻿<UserControl x:Class="ITT_sys.Views.RegisterBranchView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
              xmlns:local="clr-namespace:ITT_sys.Views"
-             mc:Ignorable="d" 
+             xmlns:m="clr-namespace:ITT_sys.ViewModels"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
@@ -13,114 +14,137 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{StaticResource MaterialDesignFont}" >
+             FontFamily="{StaticResource MaterialDesignFont}"
+             mc:Ignorable="d" Height="1000"  >
     <Border Padding="10">
-        <StackPanel Orientation="Vertical">
-            <Grid Margin="0 25 0 10 ">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Branch Details" FontSize="30" FontFamily="Nyala" FontWeight="Bold" />
-            </Grid>
-            
-            <!--Bank code-->
-            <Grid Margin="0,30,0,-10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="4*"/>
-                </Grid.ColumnDefinitions>
+        <StackPanel >
+            <dragablz:TabablzControl >
+                <dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController />
+                </dragablz:TabablzControl.InterTabController>
+                <!--Register item header-->
+                 <TabItem Header="Register">
+                <StackPanel Orientation="Vertical">
 
-                <TextBlock x:Name="BankCode" Text="Bank Code" Grid.Column="0" Margin="15,10,0,10" />
-                <ComboBox x:Name="ComboBox" ItemsSource="{Binding registerBranchModel}" SelectedItem="{Binding SelectedValue}"  Grid.Column="1" Margin="5,10,140,10" Grid.ColumnSpan="1">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
-                                <TextBlock Text="{Binding id}"  Margin="2" FontWeight="Bold"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </Grid>
+                        <Grid Margin="0 25 0 10 ">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="  Branch Details" FontSize="30" FontFamily="Nyala" FontWeight="Bold" />
+                        </Grid>
+                        <!--Bank code-->
+                        <Grid Margin="0,30,0,-10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
 
-            <!--Bank Name-->
-            <Grid Margin="0 0 0 -10">
+                            <TextBlock  Text="Bank Code" Grid.Column="0" Margin="15,10,0,10" />
+                            <ComboBox x:Name="ComboBox" ItemsSource="{Binding addBranchModel}" SelectedItem="{Binding SelectedValue}"  Grid.Column="1" Margin="5,10,140,10" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" >
+                                            <TextBlock Text="{Binding BankCode, Mode=TwoWay}"  FontWeight="Bold" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+
+                        <!--Bank Name-->
+                   
+                <Grid Margin="0 0 0 -10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Bank Name" Grid.Column="0" Margin="15,10,0,10" Grid.ColumnSpan="2"/>
-                <TextBox Text="{Binding ItemInEditMode.id}" Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
-            </Grid>
+                            <TextBox  Text="{Binding ItemInEditMode.BankName, Mode=TwoWay}" Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                </Grid>
             
-            <!--Branch code-->
-            <Grid Margin="0 0 0 -10">
+           
+                    <!--Branch code-->
+                    
+                <Grid Margin="0 0 0 -10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Branch Code" Grid.Column="0" Margin="15,10,0,10" />
-                <TextBox Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
-            </Grid>
+                <TextBox x:Name="BranchCode" Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                </Grid>
 
-            <!--Branch Name-->
-            <Grid Margin="0 0 0 -10">
+           
+                    <!--Branch Name-->
+                    
+                <Grid Margin="0 0 0 -10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Branch Name" Grid.Column="0" Margin="15,10,0,10" />
-                <TextBox Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
-            </Grid>
+                <TextBox  x:Name="BranchName" Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                </Grid>
 
 
-            <!--Address Line1-->
-            <Grid Margin="0 0 0 -10">
+          
+                    <!--Address Line1-->
+                   
+                <Grid Margin="0 0 0 -10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Address Line1" Grid.Column="0" Margin="15,10,0,10"/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
-            </Grid>
+                <TextBox x:Name="AddressLine1" Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                </Grid>
 
-            <!--Address Line2-->
-            <Grid Margin="0 0 0 -10">
+            
+                    <!--Address Line2-->
+                    
+                <Grid Margin="0 0 0 -10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
-                </Grid.ColumnDefinitions>
+               </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Address Line2" Grid.Column="0" Margin="15,10,0,10"/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
-            </Grid>
+                <TextBox x:Name="AddressLine2" Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+               </Grid>
 
-            <!--Address Line3-->
-            <Grid Margin="0 0 0 -10">
+            
+                    <!--Address Line3-->
+                   
+                <Grid Margin="0 0 0 -10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Address Line3" Grid.Column="0" Margin="15,10,0,10"/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
-            </Grid>
+                <TextBox x:Name="AddressLine3" Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                </Grid>
 
-            <!--Contact no-->
-            <Grid Margin="0 0 0 -10">
+            
+                    <!--Contact no-->
+                   
+                <Grid Margin="0 0 0 -10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Contact no" Grid.Column="0" Margin="15,10,0,10 "/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
-            </Grid>
+                <TextBox x:Name="Contactno" Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                </Grid>
 
-            <!--Email-->
+          
+                    <!--Email-->
+                    
             <Grid Margin="0 0 0 -10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -128,10 +152,11 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Email" Grid.Column="0" Margin="15,10,0,10"/>
-                <TextBox Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                <TextBox x:Name="Email" Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
             </Grid>
 
-            <!--buttons-->
+          
+             <!--buttons--> 
             <Grid Margin="0 20 0 0" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -139,10 +164,161 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Button  Command="{Binding Path= SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
+                <Button x:Name="save" Command="{Binding SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
                 <Button Margin="30 0 100 0" Grid.Column="1" Content="Cancel" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
 
             </Grid>
+        </StackPanel>
+        </TabItem>
+                <!--Update item header-->
+                 <TabItem Header="Update">
+                    <StackPanel Orientation="Vertical">
+                        <Grid Margin="0 25 0 10 ">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="  Update Bank Details" FontSize="30" FontFamily="Nyala" FontWeight="Bold" />
+                        </Grid>
+                        
+                        <!--Bank Code and Bank Name-->
+                        <Grid Margin="0,30,0,-10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <StackPanel Grid.Column="0" >
+                                <TextBlock  Text="Bank Code" Grid.Column="0" Margin="15,10,0,10"  />
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" >
+                                <ComboBox ItemsSource="{Binding updateBranchModel}" SelectedItem="{Binding SelectedValue2}"  Margin="-40,10,100,10" >
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" >
+                                                <TextBlock Text="{Binding BankCode, Mode=TwoWay}"  FontWeight="Bold" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="2" >
+                                <TextBlock  Text="Bank Name" Grid.Column="1" Margin="-80,20,0,5" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3" >
+                                <TextBox Text="{Binding ItemInEditMode2.BankName, Mode=TwoWay}"  Margin="-200,10,148,-30"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                            </StackPanel>
+                        </Grid>
+
+                   
+
+                        <!--Branch Code and Branch Name-->
+                        <Grid Margin="0,0,0,-10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <StackPanel Grid.Column="0" >
+                                <TextBlock  Text="Branch Code" Grid.Column="0" Margin="15,10,0,10" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" >
+                                <TextBox x:Name="BranchCode_update"  Margin="-40,10,100,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" >
+                                <TextBlock  Text="Branch Name" Grid.Column="1" Margin="-80,20,0,5" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3" >
+                                <TextBox Text="{Binding BranchName, Mode=OneWay}"  Margin="-200,10,148,-30"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                            </StackPanel>
+                        </Grid>
+                        <!--Address Line1-->
+                        <Grid Margin="0 0 0 -10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Address Line1" Grid.Column="0" Margin="15,10,0,10"/>
+                            <TextBox x:Name="update_addrline1"  Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                        </Grid>
+
+                        <!--Address Line2-->
+                        <Grid Margin="0 0 0 -10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Address Line2" Grid.Column="0" Margin="15,10,0,10"/>
+                            <TextBox Text="{Binding AddressLine2, Mode=OneWay}"   Grid.Column="1" Margin="5,10,140,10" SelectionBrush="#FF06203A" CaretBrush="#FF06203A"  />
+                        </Grid>
+
+                        <!--Address Line3-->
+                        <Grid Margin="0 0 0 -10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Address Line3" Grid.Column="0" Margin="15,10,0,10"/>
+                            <TextBox Text="{Binding AddressLine3, Mode=OneWay}"  Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                        </Grid>
+
+                        <!--Contact no-->
+                        <Grid Margin="0 0 0 -10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Contact no" Grid.Column="0" Margin="15,10,0,10 "/>
+                            <TextBox Text="{Binding ContactNo, Mode=OneWay}"   Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                        </Grid>
+
+                        <!--Email-->
+                        <Grid Margin="0 0 0 -10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Email" Grid.Column="0" Margin="15,10,0,10"/>
+                            <TextBox Text="{Binding Email, Mode=OneWay}"  Grid.Column="1" Margin="5,10,140,10"  SelectionBrush="#FF06203A" CaretBrush="#FF06203A" />
+                        </Grid>
+
+                        <!--buttons-->
+                        <Grid Margin="0 20 0 0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="update" Command="{Binding SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
+                            <Button Margin="30 0 100 0" Grid.Column="1" Content="Cancel" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
+
+                        </Grid>
+
+
+                    </StackPanel>
+                </TabItem>
+                 <!--Delete item header-->
+                 <TabItem Header="Delete">
+                    
+                 </TabItem>
+           </dragablz:TabablzControl>
         </StackPanel>
     </Border>
 </UserControl>

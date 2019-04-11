@@ -11,6 +11,7 @@ using ITT_sys.ViewModels.DB_Connection;
 using ITT_sys.Models;
 using System.Windows;
 using System.ComponentModel;
+using ITT_sys.ViewModels;
 
 namespace ITT_sys.ViewModels
 {
@@ -104,7 +105,7 @@ namespace ITT_sys.ViewModels
         }
 
         DBCon DB_Con = new DBCon();
-
+       
         private ObservableCollection<RegisterBankModel> _mysampleGrid = new ObservableCollection<RegisterBankModel>();
 
         public ObservableCollection<RegisterBankModel> MysampleGrid
@@ -126,10 +127,11 @@ namespace ITT_sys.ViewModels
         private void DataGrid()
         {
               try
-            {
+              {
+                string Query = "select TOP 1 * from Bank_details order by updatedAt desc";
                 DB_Con.connection_Sql();
                 DB_Con.con.Open();
-                DB_Con.com = new SqlCommand("select * from Bank_details",DB_Con.con);
+                DB_Con.com = new SqlCommand(Query, DB_Con.con);
                 DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
                 DB_Con.ds = new DataSet();
                 DB_Con.adapter.Fill(DB_Con.ds, "tblBankdetails");

@@ -24,5 +24,16 @@ namespace ITT_sys.Views
         {
             InitializeComponent();
         }
+
+      
+
+        private void DataGrid_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
+
+          
+        }
     }
 }

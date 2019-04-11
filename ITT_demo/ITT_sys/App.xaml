@@ -60,6 +60,7 @@
                 </Border>
             </ControlTemplate> 
             
+            
             <!--login window style-->
             <Style x:Key="loginWindow" TargetType="Window">
                 <Setter Property="Background">

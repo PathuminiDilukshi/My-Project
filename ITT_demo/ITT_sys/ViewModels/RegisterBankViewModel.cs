@@ -136,56 +136,56 @@ namespace ITT_sys.ViewModels
 		#endregion
 
 		# region regionstation page_button_click
-        public void Save()
-        {
-            SaveCommand = new DelegateCommand(Save, () => CanSave);
-            string Query = "select COUNT(*) from Bank_details where Bank_Code='" + this.BankCode + "'";
+		public void Save()
+		{
+			SaveCommand = new DelegateCommand(Save, () => CanSave);
+			string Query = "select COUNT(*) from Bank_details where Bank_Code='" + this.BankCode + "'";
 
-            int lines = DB_Con.RecordExists(Query);
+			int lines = DB_Con.RecordExists(Query);
 
-            if (lines > 0)
-            {
-                MessageBox.Show("Bank Code is in the dataBase ");
-            }
-            else
-            {
-                try
-                {
-                 
+			if (lines > 0)
+			{
+				MessageBox.Show("Bank Code is in the dataBase ");
+			}
+			else
+			{
+				try
+				{
+				 
 
-                    if (!string.IsNullOrEmpty(BankCode) && !string.IsNullOrEmpty(BankCode))
-                    {
-                        string query = "INSERT INTO Bank_details(Bank_Code,Bank_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no) values('" + this.BankCode + "','" + this.BankName + "','" + this.AddressLine1 + "','" + this.AddressLine2 + "','" + this.AddressLine3 + "','" + this.Email + "','" + this.ContactNo + "');";
-
-
-                        int noline = DB_Con.insert(query);
-
-                        if (noline > 0)
-                        {
-                            MessageBox.Show("Data inserted Successfully");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Try again!");
-
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please Enter Bank Code and Name ");
-                    }
+					if (!string.IsNullOrEmpty(BankCode) && !string.IsNullOrEmpty(BankCode))
+					{
+						string query = "INSERT INTO Bank_details(Bank_Code,Bank_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no) values('" + this.BankCode + "','" + this.BankName + "','" + this.AddressLine1 + "','" + this.AddressLine2 + "','" + this.AddressLine3 + "','" + this.Email + "','" + this.ContactNo + "');";
 
 
-                }
+						int noline = DB_Con.insert(query);
+
+						if (noline > 0)
+						{
+							MessageBox.Show("Data inserted Successfully");
+						}
+						else
+						{
+							MessageBox.Show("Try again!");
+
+						}
+					}
+					else
+					{
+						MessageBox.Show("Please Enter Bank Code and Name ");
+					}
 
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
+				}
 
-            }
-        }
+
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.ToString());
+				}
+
+			}
+		}
 		public void Clearbtn()
 		{
 			Clear();
@@ -338,7 +338,7 @@ namespace ITT_sys.ViewModels
 			{
 				DB_Con.connection_Sql();
 				DB_Con.con.Open();
-				DB_Con.com = new SqlCommand("select * from Bank_details", DB_Con.con);
+				DB_Con.com = new SqlCommand("select * from Branch_details", DB_Con.con);
 				DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
 				DB_Con.ds = new DataSet();
 				DB_Con.adapter.Fill(DB_Con.ds, "tblBankdetails");
@@ -370,7 +370,7 @@ namespace ITT_sys.ViewModels
 			}
 		}
 
-		#region Load_bankName
+		#region Load_bankdetails
 
 		private void FillBankName(string BankCode)
 		{
@@ -399,8 +399,6 @@ namespace ITT_sys.ViewModels
 					_itemInEditMode.Email = Email;
 					string Contact = dr["Tel_no"].ToString();
 					_itemInEditMode.ContactNo = Contact;
-
-
 				}
 
 				DB_Con.com.Dispose();
@@ -451,7 +449,7 @@ namespace ITT_sys.ViewModels
 				SaveCommand = new DelegateCommand(update, () => CanSave);
 
 				
-				string query = "UPDATE Bank_details SET Bank_Name ='" + this._itemInEditMode.BankName.Trim() + "'  ,Address_line1 ='" + this._itemInEditMode.AddressLine1.Trim() + "',Address_line2 ='" + this._itemInEditMode.AddressLine2.Trim() + "',Address_line3 = '" + this._itemInEditMode.AddressLine3.Trim() + "',Email='" + this._itemInEditMode.Email.Trim() + "',Tel_no='" + this._itemInEditMode.ContactNo.Trim() + "'   where Bank_Code='" + _selectedValue.BankCode.Trim() + "'";
+				string query = "UPDATE Bank_details SET Bank_Name ='" + this._itemInEditMode.BankName.Trim() + "'  ,Address_line1 ='" + this._itemInEditMode.AddressLine1.Trim() + "',Address_line2 ='" + this._itemInEditMode.AddressLine2.Trim() + "',Address_line3 = '" + this._itemInEditMode.AddressLine3.Trim() + "',Email='" + this._itemInEditMode.Email.Trim() + "',Tel_no='" + this._itemInEditMode.ContactNo.Trim() + "'   where Bank_Code='" + _selectedValue2.BankCode.Trim() + "'";
 
 
 				int noline = DB_Con.insert_del_update(query);
@@ -466,9 +464,6 @@ namespace ITT_sys.ViewModels
 					MessageBox.Show("Try again!");
 
 				}
-
-
-
 
 			}
 

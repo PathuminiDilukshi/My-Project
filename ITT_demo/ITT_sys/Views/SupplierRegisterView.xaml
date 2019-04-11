@@ -32,11 +32,11 @@
 
                 
                 <StackPanel Grid.Column="0" Margin="10 10">
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="First Name" FontFamily="Segoe WP" />
+                    <TextBox x:Name="SupplierName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Supplier Name" FontFamily="Segoe WP" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Last Name" FontFamily="Segoe WP" />
+                    <TextBox x:Name="ContactPerson" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Person" FontFamily="Segoe WP" />
                 </StackPanel>
              </Grid>
 
@@ -48,11 +48,11 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Margin="10 10">
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Number" FontFamily="Segoe WP"/>
+                    <TextBox x:Name="ContactNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Number" FontFamily="Segoe WP"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mobile Number" FontFamily="Segoe WP" />
+                    <TextBox x:Name="MobileNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mobile Number" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
 
@@ -64,11 +64,11 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Margin="10 10">
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line1"  FontFamily="Segoe WP"/>
+                    <TextBox x:Name="AddrLine1" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line1"  FontFamily="Segoe WP"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line2" FontFamily="Segoe WP" />
+                    <TextBox  x:Name="AddrLine2"  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line2" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
 
@@ -80,26 +80,12 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Margin="10 10">
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="City"  FontFamily="Segoe WP"/>
+                    <TextBox x:Name="AddrLine3" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="City"  FontFamily="Segoe WP"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email" FontFamily="Segoe WP" />
+                    <TextBox x:Name="Email" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email" FontFamily="Segoe WP" />
                 </StackPanel>
-            </Grid>
-
-            <!--Contact Person-->
-            <Grid  Margin="0,-30,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Column="0" Margin="10 10">
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Person" FontFamily="Segoe WP" />
-                </StackPanel>
-
-               
             </Grid>
 
             <!--Bank Details-->
@@ -114,11 +100,11 @@
 
 
                 <StackPanel Grid.Column="0" Margin="10 10">
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Bank Name"  FontFamily="Segoe WP"/>
+                    <TextBox x:Name="BankName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Bank Name"  FontFamily="Segoe WP"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Branch Name" FontFamily="Segoe WP" />
+                    <TextBox x:Name="BranchName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Branch Name" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
 
@@ -130,11 +116,11 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Margin="10 10">
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Cheque Name" FontFamily="Segoe WP" />
+                    <TextBox x:Name="ChequeName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Cheque Name" FontFamily="Segoe WP" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                    <TextBox Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Account Number" FontFamily="Segoe WP" />
+                    <TextBox x:Name="AccountNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Account Number" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
 

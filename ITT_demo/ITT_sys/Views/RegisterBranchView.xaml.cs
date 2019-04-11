@@ -24,15 +24,10 @@ namespace ITT_sys.Views
     public partial class RegisterBranchView : UserControl
     {
 
-
         public RegisterBranchView()
         {
             InitializeComponent();
-
         }
 
-
-
- 
     }
 }

@@ -28,6 +28,13 @@ namespace ITT_sys.Views
             
         }
 
+        private void ActiveItem_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
+        }
+
        
 
      

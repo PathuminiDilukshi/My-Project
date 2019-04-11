@@ -1,143 +1,421 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ITT_sys.Models;
 using System.Windows;
-using System.IO;
-using System.Data;
-using System.Data.SqlClient;
+using System.ComponentModel;
+using System.Windows.Input;
+using ITT_sys.ViewModels.Commands;
 using ITT_sys.ViewModels.DB_Connection;
+using ITT_sys.Models;
+using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Data;
 
 
 namespace ITT_sys.ViewModels
 {
-    public class RegisterBranchViewModel : ValidationsCommand
-    {
+	public class RegisterBranchViewModel : Conductor<object>,INotifyPropertyChanged
+	{
+		#region properties_intializing
+
+		private string _branchCode;
+		private string _branchName;
+		private string _addressLine1;
+		private string _addressLine2;
+		private string _addressLine3;
+		private string _contactNo;
+		private string _email;
+		DBCon DB_Con = new DBCon();
+
+		public string BranchCode
+		{
+			get { return _branchCode; }
+			set
+			{
+				_branchCode = value;
+				NotifyOfPropertyChange(() => BranchCode);
+			}
+		}
+
+		
+		private string _branchCode_update;
+
+		public string BranchCode_update
+	{
+		get { return _branchCode_update;}
+
+		set 
+		{
+			_branchCode_update = value;
+			NotifyOfPropertyChange(() => BranchCode_update);
+		
+		}
+	}
+	
+
+		public string BranchName
+		{
+			get { return _branchName; }
+			set
+			{
+				_branchName = value;
+				NotifyOfPropertyChange(() => BranchName);
+			}
+		}
+		public string AddressLine1
+		{
+			get { return _addressLine1; }
+			set
+			{
+				_addressLine1 = value;
+				NotifyOfPropertyChange(() => AddressLine1);
+			}
+		}
+		public string AddressLine2
+		{
+			get { return _addressLine2; }
+			set
+			{
+
+				_addressLine2 = value;
+				NotifyOfPropertyChange(() => AddressLine2);
+			}
+		}
+		public string AddressLine3
+		{
+			get { return _addressLine3; }
+			set
+			{
+				_addressLine3 = value;
+				NotifyOfPropertyChange(() => AddressLine3);
+			}
+		}
+		public string ContactNo
+		{
+			get { return _contactNo; }
+			set
+			{
+				_contactNo = value;
+				NotifyOfPropertyChange(() => ContactNo);
+			}
+		}
+		public string Email
+		{
+			get { return _email; }
+			set
+			{
+				_email = value;
+				NotifyOfPropertyChange(() => Email);
+			}
+		}
 
 
-        #region set_Connection_string
-        public string ConString = @"Data Source=(local);Initial Catalog=ITT_demo;User ID=sa;Password=abc123;";
-        public SqlConnection con = null;
-        public SqlCommand com = null;
-        public SqlDataAdapter adapter;
-        public DataSet ds;
+		public RegisterBranchViewModel()
+		{
+			FillList();
+			FillBankCodeList2();
+		}
 
-        #endregion
+		private RegisterBranchModel _itemInEditMode = new RegisterBranchModel();
 
-
-        public ObservableCollection<RegisterBranchModel> registerBranchModel { get; set; }
-
-
-        #region load_bank_codes
-        public RegisterBranchViewModel()
-        {
-            FillList();
-        }
+		public RegisterBranchModel ItemInEditMode
+		{
+			get { return _itemInEditMode; }
+		}
 
 
+		private RegisterBranchModel _selectedValue;
 
-        private void FillList()
-        {
-            try
-            {
-                con = new SqlConnection(ConString);
-                con.Open();
-                com = new SqlCommand("select * from Bank_details", con);
-                adapter = new SqlDataAdapter(com);
-                ds = new DataSet();
-                adapter.Fill(ds, "tblBankdetails");
+		public RegisterBranchModel SelectedValue
+		{
+			get { return _selectedValue; }
 
-                if (registerBranchModel == null)
-                    registerBranchModel = new ObservableCollection<RegisterBranchModel>();
+			set
+			{
 
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    registerBranchModel.Add(new RegisterBranchModel
-                    {
+				_selectedValue = value;
+				NotifyOfPropertyChange(() => SelectedValue);
 
-                        id = dr[0].ToString()
+				FillBankName(_selectedValue.BankCode);
+				NotifyOfPropertyChange(() => ItemInEditMode);
+			}
+		}
+
+		public ObservableCollection<RegisterBranchModel> addBranchModel { get; set; }
+		#endregion
+
+		#region btton_click
+
+		public ICommand SaveCommand { get; private set; }
+
+		public bool CanSave
+		{
+			get { return true; }
+		}
+		#endregion
+
+		# region regionstation_branch
+
+		public void save()
+		{
+			try
+			{
+				SaveCommand = new DelegateCommand(save, () => CanSave);
+				MessageBox.Show("Branch Code" + this.BranchCode);
+				string query = "INSERT INTO Branch_details (BankCode,Branch_Code,Branch_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no)VALUES('"
+					+ _selectedValue.BankCode.Trim() +"','" 
+					+ this.BranchCode + "','" 
+					+ this.BranchName + "','" 
+					+ this.AddressLine1 + "','" 
+					+ this.AddressLine2 + "','" 
+					+ this.AddressLine3 + "','"
+					+ this.Email + "','" 
+					+ this.ContactNo + "');";
+				int noline = DB_Con.insert(query);
+				if (noline > 0)
+				{
+					MessageBox.Show("Data inserted Successfully");
+				}
+				else
+				{
+					MessageBox.Show("Try again!");
+				}
+
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+		}
+
+		public void Clearbtn()
+		{
+			Clear();
+		}
+
+		public void Clear()
+		{
+			this.BranchCode = "";
+			this.BranchName = "";
+			this.AddressLine1 = "";
+			this.AddressLine2 = "";
+			this.AddressLine3 = "";
+			this.Email = "";
+			this.ContactNo = "";
+		}
+
+		private void FillList()
+		{
+			try
+			{
+				DB_Con.connection_Sql();
+				DB_Con.con.Open();
+				DB_Con.com = new SqlCommand("select Bank_Code from Bank_details", DB_Con.con);
+				DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
+				DB_Con.ds = new DataSet();
+				DB_Con.adapter.Fill(DB_Con.ds, "tblBankdetails");
+
+				if (addBranchModel == null)
+					addBranchModel = new ObservableCollection<RegisterBranchModel>();
+
+				foreach (DataRow dr in DB_Con.ds.Tables[0].Rows)
+				{
+					addBranchModel.Add(new RegisterBranchModel
+					{
+						BankCode = dr[0].ToString()
+					});
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				DB_Con.ds = null;
+				DB_Con.adapter.Dispose();
+				DB_Con.con.Close();
+				DB_Con.con.Dispose();
+			}
+		}
 
 
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
-                ds = null;
-                adapter.Dispose();
-                con.Close();
-                con.Dispose();
-            }
-        }
-        #endregion
 
-        #region Load_bankName
+		private void FillBankName(string BankCode)
+		{
+			try
+			{
+				DB_Con.con = new SqlConnection(DB_Con.ConString);
+				DB_Con.con.Open();
+				string query = "select Bank_Name from Bank_details where Bank_Code='" + BankCode + "'";
+				DB_Con.com = new SqlCommand(query, DB_Con.con);
+				SqlDataAdapter da = new SqlDataAdapter(DB_Con.com);
+				DataSet ds = new DataSet();
+				da.Fill(ds, "tblBankdetails");
 
-        private void FillBankName(string BankCode)
-        {
-            try
-            {
+				foreach (DataRow dr in ds.Tables[0].Rows)
+				{
+					string Bank_Name = dr["Bank_Name"].ToString();
+					_itemInEditMode.BankName = Bank_Name;
+				}
+			}
 
-                con = new SqlConnection(ConString);
-                con.Open();
-                string query = "select Bank_Name from Bank_details where Bank_Code='" + BankCode + "'";
-                com = new SqlCommand(query, con);
-                SqlDataAdapter da = new SqlDataAdapter(com);
-                DataSet ds = new DataSet();
-                da.Fill(ds, "tblBankdetails");
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
 
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    string Bank_Name = dr["Bank_Name"].ToString();
-                    _itemInEditMode.id = Bank_Name;
+			finally
+			{
+				DB_Con.ds = null;
+				DB_Con.adapter.Dispose();
+				DB_Con.con.Close();
+				DB_Con.con.Dispose();
+			}
 
-                }
+		}
 
-                com.Dispose();
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
-
-        private RegisterBranchModel _selectedValue;
-
-        public RegisterBranchModel SelectedValue
-        {
-            get { return _selectedValue; }
-
-            set
-            {
-
-                _selectedValue = value;
-                OnPropertyChanged("SelectedValue");
-
-                FillBankName(_selectedValue.id);
-                OnPropertyChanged("ItemInEditMode");
-            }
-        }
+		#endregion
 
 
-        private RegisterBranchModel _itemInEditMode = new RegisterBranchModel();
-        public RegisterBranchModel ItemInEditMode
-        {
-            get { return _itemInEditMode; }
-        }
+		#region UpdateBranch
+		private RegisterBranchModel _itemInEditMode2 = new RegisterBranchModel();
 
-        #endregion
-       
-    }
+		public RegisterBranchModel ItemInEditMode2
+		{
+			get { return _itemInEditMode2; }
+		}
+
+
+
+		private RegisterBranchModel _selectedValue2;
+
+		public RegisterBranchModel SelectedValue2
+		{
+			get { return _selectedValue2; }
+
+			set
+			{
+				_selectedValue2 = value;
+				NotifyOfPropertyChange(() => SelectedValue2);
+
+				FillbankNameupdation(_selectedValue2.BankCode);
+				NotifyOfPropertyChange(() => ItemInEditMode2);    
+			}
+		}
+
+
+		public ObservableCollection<RegisterBranchModel> updateBranchModel { get; set; }
+
+		private void FillBankCodeList2()
+		{
+			try
+			{
+				DB_Con.connection_Sql();
+				DB_Con.con.Open();
+				DB_Con.com = new SqlCommand("select Bank_Code from Bank_details", DB_Con.con);
+				DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
+				DB_Con.ds = new DataSet();
+				DB_Con.adapter.Fill(DB_Con.ds, "tb2Bankdetails");
+
+				if (updateBranchModel == null)
+					updateBranchModel = new ObservableCollection<RegisterBranchModel>();
+
+
+				foreach (DataRow dr in DB_Con.ds.Tables[0].Rows)
+				{
+					updateBranchModel.Add(new RegisterBranchModel
+					{
+						BankCode = dr["Bank_Code"].ToString()
+					});
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				DB_Con.ds = null;
+				DB_Con.adapter.Dispose();
+				DB_Con.con.Close();
+				DB_Con.con.Dispose();
+			}
+		}
+
+		private void FillbankNameupdation(string BankCode)
+		{
+			try
+			{
+				string query = "select Bank_Name from Bank_details where Bank_Code ='" + BankCode + "'";
+				DB_Con.connection_Sql();
+				DB_Con.con.Open();
+				DB_Con.com = new SqlCommand(query, DB_Con.con);
+				SqlDataAdapter da = new SqlDataAdapter(DB_Con.com);
+				DataSet ds = new DataSet();
+				da.Fill(ds, "tb2Bankdetails");
+
+				foreach (DataRow dr in ds.Tables[0].Rows)
+				{
+					string Bank_Name = dr["Bank_Name"].ToString();
+					_itemInEditMode2.BankName = Bank_Name;
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				DB_Con.ds = null;
+				DB_Con.adapter.Dispose();
+				DB_Con.con.Close();
+				DB_Con.con.Dispose();
+			}
+
+		}
+
+		public void update()
+		{
+
+			try
+			{
+				SaveCommand = new DelegateCommand(update, () => CanSave);
+
+				Console.WriteLine("BranchCode" +this.BranchCode_update);
+				MessageBox.Show("BranchCode" + this.BranchCode_update);
+				//string query =" UPDATE Branch_details SET BankCode = '"+ _selectedValue2.BankCode.Trim() + "',Branch_Code ='" + this._itemInEditMode2.BranchCode.Trim() + "',Branch_Name = '" + this._itemInEditMode2.BranchName.Trim() + "',Address_line1 = '" + this._itemInEditMode2.AddressLine1.Trim() + "',Address_line2 = '" + this._itemInEditMode2.AddressLine1.Trim() + "',Address_line3 = '" + this._itemInEditMode2.AddressLine1.Trim() + "',Email ='" + this._itemInEditMode2.Email.Trim() + "' ,Tel_no ='" + this._itemInEditMode2.ContactNo.Trim() + "' WHERE BankCode = '"+ _selectedValue2.BankCode.Trim() + "' AND Branch_Code ='" + this._itemInEditMode2.BranchCode.Trim() + "' ";
+				//string query = "";
+
+				//int noline = DB_Con.insert_del_update(query);
+
+				//if (noline > 0)
+				//{
+				//    MessageBox.Show("Data Updated Successfully");
+				//    ActivateItem(new BankRecordsViewModel());
+				//}
+				//else
+				//{
+				//    MessageBox.Show("Try again!");
+				//}
+
+			}
+
+
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+
+		}
+
+		#endregion
+
+	}
 
 }

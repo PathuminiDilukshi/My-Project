@@ -106,6 +106,7 @@
     <Compile Include="Models\RegisterBankModel.cs" />
     <Compile Include="Models\RegisterBranchModel.cs" />
     <Compile Include="Models\ShellModel.cs" />
+    <Compile Include="Models\TruckerModel.cs" />
     <Compile Include="ViewModels\BankRecordsViewModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\Commands\ValidationsCommand.cs" />
