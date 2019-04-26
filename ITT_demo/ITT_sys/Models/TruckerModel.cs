@@ -8,5 +8,10 @@ namespace ITT_sys.Models
 {
      public class TruckerModel
     {
+        public string TruckId { get; set; }
+        public string TruckType { get; set; }
+        public string TruckSize { get; set; }
+        public string Status { get; set; }
+        public string JoinDate { get; set; }
     }
 }

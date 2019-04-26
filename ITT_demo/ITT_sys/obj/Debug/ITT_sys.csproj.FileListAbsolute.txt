@@ -64,9 +64,12 @@ C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MahApps.Metro.xml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\BranchRecordsView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\LogInView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\SupplierRegisterView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\BankRecordsView.g.cs
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\BranchRecordsView.g.cs
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\DashboardView.g.cs
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\LogInView.g.cs
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\RegisterBankView.g.cs
@@ -88,4 +91,3 @@ C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.csproj.GenerateResource.Cache
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.exe
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.pdb
-C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.csprojResolveAssemblyReference.cache

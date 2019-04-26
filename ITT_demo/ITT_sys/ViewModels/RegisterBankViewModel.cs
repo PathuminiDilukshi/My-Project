@@ -139,7 +139,7 @@ namespace ITT_sys.ViewModels
 		public void Save()
 		{
 			SaveCommand = new DelegateCommand(Save, () => CanSave);
-			string Query = "select COUNT(*) from Bank_details where Bank_Code='" + this.BankCode + "'";
+			string Query = "select COUNT(*) from Bank_details where BankCode='" + this.BankCode + "'";
 
 			int lines = DB_Con.RecordExists(Query);
 
@@ -151,11 +151,9 @@ namespace ITT_sys.ViewModels
 			{
 				try
 				{
-				 
-
 					if (!string.IsNullOrEmpty(BankCode) && !string.IsNullOrEmpty(BankCode))
 					{
-						string query = "INSERT INTO Bank_details(Bank_Code,Bank_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no) values('" + this.BankCode + "','" + this.BankName + "','" + this.AddressLine1 + "','" + this.AddressLine2 + "','" + this.AddressLine3 + "','" + this.Email + "','" + this.ContactNo + "');";
+						string query = "INSERT INTO Bank_details(BankCode,BankName,Address_line1,Address_line2,Address_line3,Email,Tel_no) values('" + this.BankCode + "','" + this.BankName + "','" + this.AddressLine1 + "','" + this.AddressLine2 + "','" + this.AddressLine3 + "','" + this.Email + "','" + this.ContactNo + "');";
 
 
 						int noline = DB_Con.insert(query);
@@ -167,29 +165,22 @@ namespace ITT_sys.ViewModels
 						else
 						{
 							MessageBox.Show("Try again!");
-
 						}
 					}
 					else
 					{
 						MessageBox.Show("Please Enter Bank Code and Name ");
 					}
-
-
 				}
-
-
 				catch (Exception ex)
 				{
 					MessageBox.Show(ex.ToString());
 				}
-
 			}
 		}
 		public void Clearbtn()
 		{
 			Clear();
-
 		}
 
 		public void Clear()
@@ -338,7 +329,7 @@ namespace ITT_sys.ViewModels
 			{
 				DB_Con.connection_Sql();
 				DB_Con.con.Open();
-				DB_Con.com = new SqlCommand("select * from Branch_details", DB_Con.con);
+				DB_Con.com = new SqlCommand("select BankCode from Bank_details", DB_Con.con);
 				DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
 				DB_Con.ds = new DataSet();
 				DB_Con.adapter.Fill(DB_Con.ds, "tblBankdetails");
@@ -350,9 +341,7 @@ namespace ITT_sys.ViewModels
 				{
 					updateBankModel.Add(new RegisterBankModel
 					{
-
 						BankCode = dr[0].ToString()
-
 
 					});
 				}
@@ -376,10 +365,9 @@ namespace ITT_sys.ViewModels
 		{
 			try
 			{
-
 				DB_Con.con = new SqlConnection(DB_Con.ConString);
 				DB_Con.con.Open();
-				string query = "select Bank_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no from Bank_details where Bank_Code='" + BankCode + "'";
+				string query = "select BankName,Address_line1,Address_line2,Address_line3,Email,Tel_no from Bank_details where BankCode='" + BankCode + "'";
 				DB_Con.com = new SqlCommand(query, DB_Con.con);
 				SqlDataAdapter da = new SqlDataAdapter(DB_Con.com);
 				DataSet ds = new DataSet();
@@ -387,7 +375,7 @@ namespace ITT_sys.ViewModels
 
 				foreach (DataRow dr in ds.Tables[0].Rows)
 				{
-					string Bank_Name = dr["Bank_Name"].ToString();
+					string Bank_Name = dr["BankName"].ToString();
 					_itemInEditMode.BankName = Bank_Name;
 					string Address_line1 = dr["Address_line1"].ToString();
 					_itemInEditMode.AddressLine1 = Address_line1;
@@ -408,7 +396,7 @@ namespace ITT_sys.ViewModels
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.ToString());
-			}
+			}   
 
 		}
 
@@ -443,13 +431,12 @@ namespace ITT_sys.ViewModels
 		#endregion
 		public void update()
 		{
-
 			try
 			{
 				SaveCommand = new DelegateCommand(update, () => CanSave);
 
-				
-				string query = "UPDATE Bank_details SET Bank_Name ='" + this._itemInEditMode.BankName.Trim() + "'  ,Address_line1 ='" + this._itemInEditMode.AddressLine1.Trim() + "',Address_line2 ='" + this._itemInEditMode.AddressLine2.Trim() + "',Address_line3 = '" + this._itemInEditMode.AddressLine3.Trim() + "',Email='" + this._itemInEditMode.Email.Trim() + "',Tel_no='" + this._itemInEditMode.ContactNo.Trim() + "'   where Bank_Code='" + _selectedValue2.BankCode.Trim() + "'";
+
+				string query = "UPDATE Bank_details SET BankName ='" + this._itemInEditMode.BankName.Trim() + "'  ,Address_line1 ='" + this._itemInEditMode.AddressLine1.Trim() + "',Address_line2 ='" + this._itemInEditMode.AddressLine2.Trim() + "',Address_line3 = '" + this._itemInEditMode.AddressLine3.Trim() + "',Email='" + this._itemInEditMode.Email.Trim() + "',Tel_no='" + this._itemInEditMode.ContactNo.Trim() + "'   where BankCode='" + _selectedValue.BankCode.Trim() + "'";
 
 
 				int noline = DB_Con.insert_del_update(query);
@@ -502,10 +489,7 @@ namespace ITT_sys.ViewModels
 				{
 					deleteBankModel.Add(new RegisterBankModel
 					{
-
-						BankCode = dr[0].ToString()
-
-
+  					    BankCode = dr[0].ToString()
 					});
 				}
 			}
@@ -556,7 +540,7 @@ namespace ITT_sys.ViewModels
 
 				 DB_Con.con = new SqlConnection(DB_Con.ConString);
 				 DB_Con.con.Open();
-				 string query = "select Bank_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no from Bank_details where Bank_Code='" + BankCode + "'";
+				 string query = "select BankName,Address_line1,Address_line2,Address_line3,Email,Tel_no from Bank_details where Bank_Code='" + BankCode + "'";
 				 DB_Con.com = new SqlCommand(query, DB_Con.con);
 				 SqlDataAdapter da = new SqlDataAdapter(DB_Con.com);
 				 DataSet ds = new DataSet();
@@ -564,7 +548,7 @@ namespace ITT_sys.ViewModels
 
 				 foreach (DataRow dr in ds.Tables[0].Rows)
 				 {
-					 string Bank_Name = dr["Bank_Name"].ToString();
+					 string Bank_Name = dr["BankName"].ToString();
 					 _itemInEditMode2.BankName = Bank_Name;
 					 string Address_line1 = dr["Address_line1"].ToString();
 					 _itemInEditMode2.AddressLine1 = Address_line1;
@@ -595,7 +579,7 @@ namespace ITT_sys.ViewModels
 			 try
 			 {
 				 SaveCommand = new DelegateCommand(Delete, () => CanSave);
-				 string query = "delete from Bank_details where Bank_Code='" + _selectedValue2.BankCode.Trim() + "'";
+				 string query = "delete from Bank_details where BankCode='" + _selectedValue2.BankCode.Trim() + "'";
 
 				 int noline = DB_Con.insert_del_update(query);
 				 if (noline > 0)
@@ -606,7 +590,6 @@ namespace ITT_sys.ViewModels
 				 else
 				 {
 					 MessageBox.Show("Try again!");
-
 				 }
 
 			 }

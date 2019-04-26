@@ -18,8 +18,7 @@ namespace ITT_sys.ViewModels
     public class BankRecordsViewModel : Screen
     {
         #region  properies
-        private string _bankCode
-;
+        private string _bankCode;
 
         public string BankCode
         {
@@ -143,15 +142,13 @@ namespace ITT_sys.ViewModels
                 {
                     MysampleGrid.Add(new RegisterBankModel
                     {
-
                      BankCode=dr[0].ToString(),
-                     BankName = dr["Bank_Name"].ToString(),
+                     BankName = dr["BankName"].ToString(),
                      AddressLine1 = dr["Address_line1"].ToString(),
                      AddressLine2 = dr["Address_line2"].ToString(),
                      AddressLine3 = dr["Address_line3"].ToString(),
                      Email = dr["Email"].ToString(),
                      ContactNo = dr["Tel_no"].ToString()
-
                     });
                 }
             }

@@ -17,7 +17,7 @@ namespace ITT_sys
 
         protected override void OnStartup(object sender, System.Windows.StartupEventArgs e)
         {
-            DisplayRootViewFor<DashboardViewModel>();
+            DisplayRootViewFor<SupplierRegisterViewModel>();
         }
 
     }

@@ -230,6 +230,18 @@
 
                         </Grid>
 
+                        <Grid Width="954"  Background="White">
+                            <ScrollViewer Margin="10,0,-10,0" >
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="283*"/>
+                                        <ColumnDefinition Width="654*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentControl  x:Name="ActiveItem"  Width="954" ScrollViewer.VerticalScrollBarVisibility="Auto" MouseWheel="ActiveItem_MouseWheel" Grid.ColumnSpan="2" Margin="0,0,-17,0"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Grid>
+
 
                     </StackPanel>
                 </TabItem>
@@ -344,17 +356,7 @@
                 </TabItem>
             </dragablz:TabablzControl>
 
-            <Grid Width="954"  Background="White">
-                <ScrollViewer Margin="10,0,-10,0" >
-                    <Grid >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="283*"/>
-                            <ColumnDefinition Width="654*"/>
-                        </Grid.ColumnDefinitions>
-                        <ContentControl  x:Name="ActiveItem"  Width="954" ScrollViewer.VerticalScrollBarVisibility="Auto" MouseWheel="ActiveItem_MouseWheel" Grid.ColumnSpan="2" Margin="0,0,-17,0"/>
-                    </Grid>
-                </ScrollViewer>
-            </Grid>
+           
         </StackPanel>
     </Border>
 </UserControl>

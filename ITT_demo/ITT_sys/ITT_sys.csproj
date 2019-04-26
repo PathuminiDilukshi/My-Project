@@ -108,6 +108,7 @@
     <Compile Include="Models\ShellModel.cs" />
     <Compile Include="Models\TruckerModel.cs" />
     <Compile Include="ViewModels\BankRecordsViewModel.cs" />
+    <Compile Include="ViewModels\BranchRecordsViewModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\Commands\ValidationsCommand.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
@@ -118,6 +119,9 @@
     <Compile Include="ViewModels\SupplierRegisterViewModel.cs" />
     <Compile Include="Views\BankRecordsView.xaml.cs">
       <DependentUpon>BankRecordsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BranchRecordsView.xaml.cs">
+      <DependentUpon>BranchRecordsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
@@ -167,10 +171,16 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\BankRecordsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BranchRecordsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
