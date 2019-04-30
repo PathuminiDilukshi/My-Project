@@ -12,6 +12,7 @@ using System.Windows;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using ITT_sys.ViewModels.Commands;
 
 
 namespace ITT_sys.ViewModels
@@ -57,15 +58,15 @@ namespace ITT_sys.ViewModels
             }
         }
 
-        private string _mobileNo;
+        private string _faxNo;
 
-        public string MobileNo
+        public string FaxNo
         {
-            get { return _mobileNo; }
+            get { return _faxNo; }
             set
             {
-                _mobileNo = value;
-                NotifyOfPropertyChange(() => MobileNo);
+                _faxNo = value;
+                NotifyOfPropertyChange(() => FaxNo);
             }
         }
 
@@ -270,6 +271,48 @@ namespace ITT_sys.ViewModels
             DB_Con.com.Parameters.AddWithValue("@Status", objEmp.Status);
             DB_Con.com.ExecuteNonQuery();
             DB_Con.CloseCon();
+        }
+
+        public void Save()
+        {
+
+            try
+            {
+
+                string query = "INSERT INTO Supplier_details (Supplier_name,Mobile_Number,RecepientName,Address1,Address2,Address3,Registered_date,BranchCode,BankCode,Truck_code,[account_no],[status],[Fax_Number]) VALUES('"
+                + this.SupplierName + "','"
+                + this.ContactNo + "','"
+                + this.ContactPerson + "','"
+                + this.AddrLine1 + "','"
+                + this.AddrLine2 + "','"
+                + this.AddrLine3 + "','"
+                + this.Email + "','"
+
+                + this.BankName + "','"
+                + this.BranchName + "','"
+                + this.ChequeName + "','"
+                + this.AccountNo + "','"
+                + this.FaxNo + 
+                "');";
+
+                int noline = DB_Con.insert(query);
+
+                if (noline > 0)
+                {
+                    MessageBox.Show("Data inserted Successfully");
+                }
+                else
+                {
+                    MessageBox.Show("Try again!");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+               
         }
     }
 }

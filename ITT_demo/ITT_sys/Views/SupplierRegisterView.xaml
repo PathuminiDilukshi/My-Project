@@ -14,9 +14,10 @@
              Loaded="Window_Loaded"
              d:DesignHeight="1000" d:DesignWidth="1000">
     <Border Padding="10">
-        <StackPanel Margin="0,0,30,0">
 
-            <Grid Margin="0 25 0 10 ">
+        <ScrollViewer>
+        <StackPanel Margin="0,0,30,0"> 
+                <Grid Margin="0 25 0 10 ">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -53,7 +54,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                    <TextBox x:Name="MobileNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mobile Number" FontFamily="Segoe WP" />
+                    <TextBox x:Name="FaxNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mobile Number" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
 
@@ -101,11 +102,11 @@
 
 
                 <StackPanel Grid.Column="0" Margin="10 10">
-                    <TextBox x:Name="BankName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Bank Name"  FontFamily="Segoe WP"/>
+                    <TextBox x:Name="BankCode" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Bank Code"  FontFamily="Segoe WP"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                    <TextBox x:Name="BranchName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Branch Name" FontFamily="Segoe WP" />
+                    <TextBox x:Name="BranchCode" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Branch Code" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
 
@@ -124,42 +125,51 @@
                     <TextBox x:Name="AccountNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Account Number" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
-            <Grid>
-            <Grid  Margin="0,-10,0,0">
-                 <StackPanel  Margin="-50 10 0 30" >
-                     <Button x:Name="Save" Command="{Binding SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
-                 </StackPanel>
-            </Grid>
 
-            <Grid Margin="0,40,0,0">
-                <DataGrid CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding TruckerDetails}" Name="dgEmp"
+                <Grid Margin="0,-10,0,0">
+                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsSelected}" />
+                        <TextBlock Text="E-Transaction" Margin="10,5,5,5"/>
+                        <!--<TextBox Text="{Binding MyBoundMessage}" />-->
+                    </StackPanel> 
+                </Grid>
+                
+                <Grid  Margin="0,20,0,0">
+                    <StackPanel  Margin="-50 10 0 30" >
+                        <Button x:Name="Save" Command="{Binding SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="0,30,0,0">
+
+                    <DataGrid CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding TruckerDetails}" Name="dgEmp"
                           CellEditEnding="dgEmp_CellEditEnding"
                           SelectionChanged="dgEmp_SelectionChanged"
                           RowEditEnding="dgEmp_RowEditEnding">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Truck Id"   Binding="{Binding TruckId}"    />
-                        <DataGridTextColumn Header="Truck Type"  Binding="{Binding  TruckType}" />
-                        <DataGridTextColumn Header="Truck Size"  Binding="{Binding  TruckSize }"  />
-                        <DataGridTextColumn Header="Join Date"   Binding="{Binding  JoinDate }" />
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Truck Id"   Binding="{Binding TruckId}"    />
+                            <DataGridTextColumn Header="Truck Type"  Binding="{Binding  TruckType}" />
+                            <DataGridTextColumn Header="Truck Size"  Binding="{Binding  TruckSize }"  />
+                            <DataGridTextColumn Header="Join Date"   Binding="{Binding  JoinDate }" />
                             <DataGridTextColumn Header="Status"   Binding="{Binding  Status }" />
                             <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Update" x:Name="btnUpdate" ></Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Delete" x:Name="btnDelete" ></Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Update" x:Name="btnUpdate" ></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" x:Name="btnDelete" ></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-            </Grid>
-            </Grid>
-        </StackPanel>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
     </Border>
 </UserControl>
