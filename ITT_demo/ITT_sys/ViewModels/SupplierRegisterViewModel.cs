@@ -13,13 +13,39 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using ITT_sys.ViewModels.Commands;
+using System.ComponentModel;
+using System.Windows.Threading;
 
 
 namespace ITT_sys.ViewModels
 {
     public class SupplierRegisterViewModel:Screen
+
     {
-        private string _supplierName;
+        static public string SupName;
+        static public int supID ;
+
+
+        
+        public string Status = "active";
+        
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                if (_isSelected == value) return;
+
+                _isSelected = value;
+                NotifyOfPropertyChange(() => IsSelected);
+
+            }
+        }
+
+
+     
+    private string _supplierName;
 
         public string SupplierName
         {
@@ -120,25 +146,25 @@ namespace ITT_sys.ViewModels
 
         private string _bankName;
 
-        public string BankName
+        public string BankCode
         {
             get { return _bankName; }
             set
             {
                 _bankName = value;
-                NotifyOfPropertyChange(() => BankName);
+                NotifyOfPropertyChange(() => BankCode);
             }
         }
 
         private string _branchName;
 
-        public string BranchName
+        public string BranchCode
         {
             get { return _branchName; }
             set
             {
                 _branchName = value;
-                NotifyOfPropertyChange(() => BranchName);
+                NotifyOfPropertyChange(() => BranchCode);
             }
         }
 
@@ -205,101 +231,83 @@ namespace ITT_sys.ViewModels
             }
         }
 
-        private string _status;
+        private string  _registerdate ;
 
-        public string Status
+        public string registerDate
         {
-            get { return _status; }
-            set
-            {
-                _status = value;
-                NotifyOfPropertyChange(() => Status);
-            }
+            get { return _registerdate; }
+
+            set { _registerdate = value; }
         }
+        
 
 
-        private string _joinDate;
-
-        public string JoinDate
-        {
-            get { return _joinDate; }
-            set
-            {
-                _joinDate = value;
-                NotifyOfPropertyChange(() => JoinDate);
-            }
-        }
 
         DBCon DB_Con = new DBCon();
 
 
         public ObservableCollection<TruckerModel> GetAlltruckers()
         {
-            ObservableCollection<TruckerModel> EmpCol = new ObservableCollection<TruckerModel>();
+            ObservableCollection<TruckerModel> TruckCol = new ObservableCollection<TruckerModel>();
             DB_Con.OpenCon();
             DB_Con.com = new SqlCommand();
             DB_Con.com.Connection = DB_Con.con;
-            DB_Con.com.CommandText = "Select * from Trucker_Details";
+            DB_Con.com.CommandText = "Select TruckId,Truck_size,Truck_Type,Join_date,Status from Trucker_Details where sup_code='" + supID + "'";
+
+            
             SqlDataReader Reader = DB_Con.com.ExecuteReader();
  
             while (Reader.Read())
             {
-                EmpCol.Add(new TruckerModel()
+                TruckCol.Add(new TruckerModel()
                 {
                     TruckId = (Reader["TruckId"]).ToString(),
-                    TruckType = (Reader["Truck_size"]).ToString(),
-                    TruckSize = (Reader["Truck_Type"]).ToString(),
-                    JoinDate = (Reader["Join_date"]).ToString(),
+                    TruckSize = (Reader["Truck_size"]).ToString(),
+                    TruckType = (Reader["Truck_Type"]).ToString(),
+                    registerDate = (Reader["Join_date"]).ToString(),
                     Status = (Reader["Status"]).ToString()
                 });
             }
 
             DB_Con.CloseCon();
-            return EmpCol;
+            return TruckCol;
         }
 
-        public void InsertEmployee(TruckerModel objEmp)
+        public bool CanSave(string supplierName, string branchCode,string bankCode)
         {
-            DB_Con.OpenCon();
-            DB_Con.com = new SqlCommand();
-            DB_Con.com.Connection = DB_Con.con;
-            DB_Con.com.CommandText = "Insert into Trucker_Details(TruckId,Truck_size,Truck_Type,Join_date,Status) Values(@TruckId,@TruckSize,@TruckType,@JoinDate,@Status)";
-            DB_Con.com.Parameters.AddWithValue("@TruckId", objEmp.TruckId);
-            DB_Con.com.Parameters.AddWithValue("@TruckSize", objEmp.TruckSize);
-            DB_Con.com.Parameters.AddWithValue("@TruckType", objEmp.TruckType);
-            DB_Con.com.Parameters.AddWithValue("@JoinDate", objEmp.JoinDate);
-            DB_Con.com.Parameters.AddWithValue("@Status", objEmp.Status);
-            DB_Con.com.ExecuteNonQuery();
-            DB_Con.CloseCon();
+            return !String.IsNullOrWhiteSpace(supplierName) || !String.IsNullOrWhiteSpace(branchCode) || !String.IsNullOrWhiteSpace(bankCode);
         }
 
-        public void Save()
+        public void Save(string supplierName, string branchCode, string bankCode)
         {
 
             try
             {
 
-                string query = "INSERT INTO Supplier_details (Supplier_name,Mobile_Number,RecepientName,Address1,Address2,Address3,Registered_date,BranchCode,BankCode,Truck_code,[account_no],[status],[Fax_Number]) VALUES('"
+                string query = "INSERT INTO Supplier_details1  (Supplier_name,Mobile_Number,RecepientName,Address1,Address2,Address3,Registered_date,BranchCode,BankCode,account_no,status,Fax_Number,eTans,cheque_Name) VALUES('"
                 + this.SupplierName + "','"
                 + this.ContactNo + "','"
                 + this.ContactPerson + "','"
                 + this.AddrLine1 + "','"
                 + this.AddrLine2 + "','"
                 + this.AddrLine3 + "','"
-                + this.Email + "','"
-
-                + this.BankName + "','"
-                + this.BranchName + "','"
-                + this.ChequeName + "','"
+                + this._registerdate + "','"
+                + this.BranchCode + "','"
+                + this.BankCode + "','"
                 + this.AccountNo + "','"
-                + this.FaxNo + 
+                + this.Status + "','"
+                + this.FaxNo + "','"
+                + this.IsSelected + "','"
+                + this.ChequeName + 
                 "');";
-
+                
                 int noline = DB_Con.insert(query);
 
                 if (noline > 0)
                 {
                     MessageBox.Show("Data inserted Successfully");
+                    SupName = this.SupplierName;
+
                 }
                 else
                 {
@@ -313,6 +321,54 @@ namespace ITT_sys.ViewModels
                 MessageBox.Show(ex.ToString());
             }
                
+        }
+
+        public void InsertEmployee(TruckerModel objEmp)
+        {
+            Console.WriteLine("registe date=" + objEmp.registerDate);
+
+            string query2 = "select TOP 1 sID from Supplier_details1 where Supplier_name ='"
+               + SupName + "' order by Registered_date desc";
+            supID = DB_Con.getSupID(query2);
+
+            DB_Con.OpenCon();
+            DB_Con.com = new SqlCommand();
+            DB_Con.com.Connection = DB_Con.con;
+            DB_Con.com.CommandText = "Insert into Trucker_Details(TruckId,Truck_size,Truck_Type,Join_date,Status,sup_code) Values(@TruckId,@TruckSize,@TruckType,@StartDate,@Status,@sup_code)";
+            DB_Con.com.Parameters.AddWithValue("@TruckId", objEmp.TruckId);
+            DB_Con.com.Parameters.AddWithValue("@TruckSize", objEmp.TruckSize);
+            DB_Con.com.Parameters.AddWithValue("@TruckType", objEmp.TruckType);
+            DB_Con.com.Parameters.AddWithValue("@StartDate", objEmp.registerDate);
+            DB_Con.com.Parameters.AddWithValue("@Status", objEmp.Status);
+            DB_Con.com.Parameters.AddWithValue("@sup_code", supID);
+            DB_Con.com.ExecuteNonQuery();
+            DB_Con.CloseCon();
+        }
+
+        public void DeleteTruck(TruckerModel objEmpToAdd)
+        {
+            string truckId = objEmpToAdd.TruckId;
+           
+            try
+            {
+                string query = "DELETE FROM Trucker_Details where TruckId ='" + truckId + "'";
+               
+                int noline = DB_Con.insert_del_update(query);
+                if (noline > 0)
+                {
+                    MessageBox.Show("Row Deleted!");
+                   
+                }
+                else
+                {
+                    MessageBox.Show("Try again!");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

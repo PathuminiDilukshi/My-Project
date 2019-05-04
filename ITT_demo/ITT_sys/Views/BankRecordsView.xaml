@@ -26,7 +26,7 @@
             <DataGrid  CanUserResizeColumns="True" CanUserSortColumns="True"  ScrollViewer.VerticalScrollBarVisibility="Auto"  AutoGenerateColumns="False"
                                   ItemsSource="{Binding Path=MysampleGrid,Mode=OneWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"  
                                   Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  MouseWheel="DataGrid_MouseWheel"
-                                  RowBackground="#fff" FontWeight="Bold" Foreground="#525252" AlternatingRowBackground="#f2f2f2" BorderBrush="#000" >
+                                  RowBackground="#fff" FontWeight="Bold" Foreground="#525252" AlternatingRowBackground="Gray" BorderBrush="#000" >
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="BankCode"  Width="90" Binding="{Binding BankCode}"   IsReadOnly="True" />

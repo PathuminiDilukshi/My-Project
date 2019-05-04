@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ITT_sys.ViewModels;
 using ITT_sys.Models;
+using System.Data;
 
 namespace ITT_sys.Views
 {
@@ -23,6 +24,9 @@ namespace ITT_sys.Views
     /// </summary>
     public partial class SupplierRegisterView : UserControl
     {
+        
+
+        static public string Title;
         TruckerModel objEmpToAdd = new TruckerModel();
         SupplierRegisterViewModel objDs = new SupplierRegisterViewModel();
 
@@ -31,9 +35,39 @@ namespace ITT_sys.Views
             InitializeComponent();
         }
 
+        private void DataGrid_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
+
+
+        }
+        private void DatePicker_SelectedDateChanged(object sender,
+          SelectionChangedEventArgs e)
+        {
+            // ... Get DatePicker reference.
+            var picker = sender as DatePicker;
+
+            // ... Get nullable DateTime from SelectedDate.
+            DateTime? date = picker.SelectedDate;
+            if (date == null)
+            {
+                // ... A null object.
+                Title = "No date";
+                Console.WriteLine("Title =" + Title);
+            }
+            else
+            {
+                // ... No need to display the time.
+                Title = date.Value.ToShortDateString();
+                Console.WriteLine("Title =" + Title);
+                objEmpToAdd.registerDate = Title;
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
             
            dgEmp.ItemsSource = objDs.GetAlltruckers();
         }
@@ -44,7 +78,7 @@ namespace ITT_sys.Views
             objEmpToAdd = dgEmp.SelectedItem as TruckerModel;
 
         }
-
+       
 
         private void dgEmp_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
@@ -57,6 +91,13 @@ namespace ITT_sys.Views
                     objEmpToAdd.TruckId = Convert.ToString(truckId);
                 }
 
+                FrameworkElement element_TruckSize = dgEmp.Columns[2].GetCellContent(e.Row);
+                if (element_TruckSize.GetType() == typeof(TextBox))
+                {
+                    var truckSize = ((TextBox)element_TruckSize).Text;
+                    objEmpToAdd.TruckSize = Convert.ToString(truckSize);
+                }
+
                 FrameworkElement element_TruckType = dgEmp.Columns[1].GetCellContent(e.Row);
                 if (element_TruckType.GetType() == typeof(TextBox))
                 {
@@ -64,23 +105,31 @@ namespace ITT_sys.Views
                     objEmpToAdd.TruckType = Convert.ToString(truckType);
                 }
 
-                FrameworkElement element_TruckSize = dgEmp.Columns[2].GetCellContent(e.Row);
-                if (element_TruckSize.GetType() == typeof(TextBox))
-                {
-                    var truckSize = ((TextBox)element_TruckSize).Text;
-                    objEmpToAdd.TruckSize = Convert.ToString(truckSize);
-                }
-                FrameworkElement element_JoinDate = dgEmp.Columns[3].GetCellContent(e.Row);
-                if (element_JoinDate.GetType() == typeof(TextBox))
-                {
-                    var joinDate = ((TextBox)element_JoinDate).Text;
-                    objEmpToAdd.JoinDate = Convert.ToString(joinDate);
-                }
                 FrameworkElement element_Status = dgEmp.Columns[3].GetCellContent(e.Row);
                 if (element_Status.GetType() == typeof(TextBox))
                 {
                     var status = ((TextBox)element_Status).Text;
-                    objEmpToAdd.Status = Convert.ToString(status);
+                    objEmpToAdd.Status = Convert.ToString(status); 
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Add_btn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var Res = MessageBox.Show("Do you want to Create this new entry", "Confirm", MessageBoxButton.YesNo);
+                if (Res == MessageBoxResult.Yes)
+                {
+                    objDs.InsertEmployee(objEmpToAdd);
+                    //ReadOnlyProperty, Value = true;
+                    dgEmp.Columns[0].IsReadOnly = true;
+
                 }
             }
             catch (Exception ex)
@@ -89,21 +138,26 @@ namespace ITT_sys.Views
             }
         }
 
-        private void dgEmp_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        private void Delete_btn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var Res = MessageBox.Show("Do you want to Create this new entry", "Confirm", MessageBoxButton.YesNo);
+                var Res = MessageBox.Show("Do you want to Delete this new entry", "Confirm", MessageBoxButton.YesNo);
                 if (Res == MessageBoxResult.Yes)
                 {
-                    objDs.InsertEmployee(objEmpToAdd);
+                    objDs.DeleteTruck(objEmpToAdd);
                 }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
         }
+
+
+        
 
        
     }

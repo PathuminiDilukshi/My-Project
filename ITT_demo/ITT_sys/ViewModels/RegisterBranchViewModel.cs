@@ -226,7 +226,7 @@ namespace ITT_sys.ViewModels
 			{
 				DB_Con.connection_Sql();
 				DB_Con.con.Open();
-				DB_Con.com = new SqlCommand("select Bank_Code from Bank_details", DB_Con.con);
+                DB_Con.com = new SqlCommand("select BankCode from Bank_details", DB_Con.con);
 				DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
 				DB_Con.ds = new DataSet();
 				DB_Con.adapter.Fill(DB_Con.ds, "tblBankdetails");
@@ -263,7 +263,7 @@ namespace ITT_sys.ViewModels
 			{
 				DB_Con.con = new SqlConnection(DB_Con.ConString);
 				DB_Con.con.Open();
-				string query = "select Bank_Name from Bank_details where Bank_Code='" + BankCode + "'";
+                string query = "select BankName from Bank_details where BankCode='" + BankCode + "'";
 				DB_Con.com = new SqlCommand(query, DB_Con.con);
 				SqlDataAdapter da = new SqlDataAdapter(DB_Con.com);
 				DataSet ds = new DataSet();
@@ -271,7 +271,7 @@ namespace ITT_sys.ViewModels
 
 				foreach (DataRow dr in ds.Tables[0].Rows)
 				{
-					string Bank_Name = dr["Bank_Name"].ToString();
+                    string Bank_Name = dr["BankName"].ToString();
 					_itemInEditMode.BankName = Bank_Name;
 				}
 			}

@@ -88,6 +88,34 @@ namespace ITT_sys.ViewModels.DB_Connection
                 myCon.Close();
                 return recordCount;
             }
-        }   
+        }
+
+        public int getSupID(string query)
+        {
+            using (SqlConnection myCon = new SqlConnection(connectionstring))
+            {
+
+                myCon.Open();
+                int supID = 0 ;
+                com = new SqlCommand(query, myCon);
+                SqlDataReader reader = com.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        supID = reader.GetInt32(0);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                com.Dispose();
+                myCon.Close();
+                reader.Close();
+                return supID;
+            }
+        }
     }
 }
