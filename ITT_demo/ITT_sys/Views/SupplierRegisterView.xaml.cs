@@ -24,8 +24,8 @@ namespace ITT_sys.Views
     /// </summary>
     public partial class SupplierRegisterView : UserControl
     {
-        
 
+        List<int> lstSelectedEmpNo;
         static public string Title;
         TruckerModel objEmpToAdd = new TruckerModel();
         SupplierRegisterViewModel objDs = new SupplierRegisterViewModel();
@@ -35,14 +35,20 @@ namespace ITT_sys.Views
             InitializeComponent();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            dgEmp.ItemsSource = objDs.GetAlltruckers();
+            lstSelectedEmpNo = new List<int>();
+        }
+
         private void DataGrid_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             ScrollViewer scv = (ScrollViewer)sender;
             scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
             e.Handled = true;
-
-
         }
+
         private void DatePicker_SelectedDateChanged(object sender,
           SelectionChangedEventArgs e)
         {
@@ -66,11 +72,7 @@ namespace ITT_sys.Views
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-           dgEmp.ItemsSource = objDs.GetAlltruckers();
-        }
+       
 
         private void dgEmp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -119,6 +121,21 @@ namespace ITT_sys.Views
             }
         }
 
+
+        private void dgEmp_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            FrameworkElement element = dgEmp.Columns[5].GetCellContent(e.Row);
+            if (element.GetType() == typeof(CheckBox))
+            {
+                if (((CheckBox)element).IsChecked == true)
+                {
+                    FrameworkElement element_TruckId = dgEmp.Columns[0].GetCellContent(e.Row);
+                    int truckId = Convert.ToInt32(((TextBlock)element_TruckId).Text);
+                    lstSelectedEmpNo.Add(truckId);
+                }
+            }
+        }
+
         private void Add_btn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -138,23 +155,27 @@ namespace ITT_sys.Views
             }
         }
 
-        private void Delete_btn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var Res = MessageBox.Show("Do you want to Delete this new entry", "Confirm", MessageBoxButton.YesNo);
-                if (Res == MessageBoxResult.Yes)
-                {
-                    objDs.DeleteTruck(objEmpToAdd);
-                }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
-        }
+
+
+        //private void Delete_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        var Res = MessageBox.Show("Do you want to Delete this new entry", "Confirm", MessageBoxButton.YesNo);
+        //        if (Res == MessageBoxResult.Yes)
+        //        {
+        //            objDs.DeleteTruck(objEmpToAdd);
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+
+        //}
 
 
         

@@ -66,7 +66,6 @@ C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\BranchRecordsView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\LogInView.baml
-C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\SupplierRegisterView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\BankRecordsView.g.cs
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\BranchRecordsView.g.cs
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\DashboardView.g.cs
@@ -85,8 +84,11 @@ C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\RegisterBankView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\RegisterBranchView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\ShellView.baml
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\Views\SupplierRegisterView.baml
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.g.resources
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.Properties.Resources.resources
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.csproj.GenerateResource.Cache
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.exe.licenses
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.exe
 C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.pdb
+C:\Users\user\Documents\visual studio 2013\Projects\repository\ITT_demo\ITT_sys\obj\Debug\ITT_sys.csprojResolveAssemblyReference.cache

@@ -15,13 +15,15 @@ using System.Data.SqlClient;
 using ITT_sys.ViewModels.Commands;
 using System.ComponentModel;
 using System.Windows.Threading;
+using System.Windows.Input;
 
 
 namespace ITT_sys.ViewModels
 {
-    public class SupplierRegisterViewModel:Screen
-
+    public class SupplierRegisterViewModel : Conductor<object>, INotifyPropertyChanged
     {
+
+        #region propties initializing
         static public string SupName;
         static public int supID ;
 
@@ -40,6 +42,20 @@ namespace ITT_sys.ViewModels
                 _isSelected = value;
                 NotifyOfPropertyChange(() => IsSelected);
 
+            }
+        }
+
+
+
+        private string _supplierCode;
+
+        public string SupplierCode
+        {
+            get { return _supplierCode; }
+            set
+            {
+                _supplierCode = value;
+                NotifyOfPropertyChange(() => SupplierCode);
             }
         }
 
@@ -144,26 +160,26 @@ namespace ITT_sys.ViewModels
             }
         }
 
-        private string _bankName;
+        private string _bankCode;
 
         public string BankCode
         {
-            get { return _bankName; }
+            get { return _bankCode; }
             set
             {
-                _bankName = value;
+                _bankCode = value;
                 NotifyOfPropertyChange(() => BankCode);
             }
         }
 
-        private string _branchName;
+        private string _branchCode;
 
         public string BranchCode
         {
-            get { return _branchName; }
+            get { return _branchCode; }
             set
             {
-                _branchName = value;
+                _branchCode = value;
                 NotifyOfPropertyChange(() => BranchCode);
             }
         }
@@ -246,6 +262,23 @@ namespace ITT_sys.ViewModels
         DBCon DB_Con = new DBCon();
 
 
+        #endregion
+
+        #region btton_click
+
+        public ICommand SaveCommand { get; private set; }
+
+        public bool CanSave
+        {
+            get
+            {
+                return true;
+            }
+        }
+        #endregion
+
+        #region register_supplier
+
         public ObservableCollection<TruckerModel> GetAlltruckers()
         {
             ObservableCollection<TruckerModel> TruckCol = new ObservableCollection<TruckerModel>();
@@ -273,18 +306,18 @@ namespace ITT_sys.ViewModels
             return TruckCol;
         }
 
-        public bool CanSave(string supplierName, string branchCode,string bankCode)
+        public bool CanRegister(string supplierName, string branchCode, string bankCode)
         {
             return !String.IsNullOrWhiteSpace(supplierName) || !String.IsNullOrWhiteSpace(branchCode) || !String.IsNullOrWhiteSpace(bankCode);
         }
 
-        public void Save(string supplierName, string branchCode, string bankCode)
+        public void Register(string supplierName, string branchCode, string bankCode)
         {
 
             try
             {
 
-                string query = "INSERT INTO Supplier_details1  (Supplier_name,Mobile_Number,RecepientName,Address1,Address2,Address3,Registered_date,BranchCode,BankCode,account_no,status,Fax_Number,eTans,cheque_Name) VALUES('"
+                string query = "INSERT INTO Supplier_details1  (Supplier_name,Mobile_Number,RecepientName,Address1,Address2,Address3,Registered_date,BranchCode,BankCode,account_no,status,Fax_Number,eTans,cheque_Name,Email) VALUES('"
                 + this.SupplierName + "','"
                 + this.ContactNo + "','"
                 + this.ContactPerson + "','"
@@ -298,7 +331,8 @@ namespace ITT_sys.ViewModels
                 + this.Status + "','"
                 + this.FaxNo + "','"
                 + this.IsSelected + "','"
-                + this.ChequeName + 
+                + this.ChequeName + "','"
+                + this.Email +
                 "');";
                 
                 int noline = DB_Con.insert(query);
@@ -370,5 +404,137 @@ namespace ITT_sys.ViewModels
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        #endregion
+
+        #region update_supplier
+
+        private RegisterBankModel _selectedValue;
+
+        public RegisterBankModel SelectedValue
+        {
+            get { return _selectedValue; }
+
+            set
+            {
+
+                _selectedValue = value;
+                NotifyOfPropertyChange(() => SelectedValue);
+
+                NotifyOfPropertyChange(() => ItemInEditMode2);
+            }
+        }
+
+        private SupplierModel _itemInEditMode2 = new SupplierModel();
+
+        public SupplierModel ItemInEditMode2
+        {
+            get { return _itemInEditMode2; }
+
+     
+        }
+
+
+
+        public SupplierRegisterViewModel()
+        {
+
+        }
+
+       
+
+        public ObservableCollection<SupplierModel> SupplierDetails { get; set; }
+
+        
+        private void SearchSupplier()
+        {
+             
+
+            
+            try{
+
+                string query = "select * from Supplier_details1 where Supplier_Code like '%" + SupplierCode + "%'";
+                DB_Con.connection_Sql();
+                DB_Con.OpenCon();
+                DB_Con.com = new SqlCommand(query, DB_Con.con);
+                DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
+                DB_Con.ds = new DataSet();
+                DB_Con.adapter.Fill(DB_Con.ds, "tb2Bankdetails");
+
+                foreach (DataRow dr in DB_Con.ds.Tables[0].Rows)
+                {
+                    string supName = dr["Supplier_name"].ToString();
+                    ItemInEditMode2.SupplierName = supName;
+
+                    string contactPerson = dr["RecepientName"].ToString();
+                    ItemInEditMode2.ContactPerson = contactPerson;
+
+                    string contactNo = dr["Mobile_Number"].ToString();
+                    ItemInEditMode2.ContactNo = contactNo;
+
+                    string faxNo = dr["Fax_Number"].ToString();
+                    ItemInEditMode2.FaxNo = faxNo;
+
+                    string addrLine1 = dr["Address1"].ToString();
+                    ItemInEditMode2.AddrLine1 = addrLine1;
+
+                    string addrLine2 = dr["Address2"].ToString();
+                    ItemInEditMode2.AddrLine2 = addrLine2;
+
+                    string addrLine3 = dr["Address3"].ToString();
+                    ItemInEditMode2.AddrLine3 = addrLine3;
+
+                    string email = dr["Email"].ToString();
+                    ItemInEditMode2.Email = email;
+
+                    string branchCode = dr["BranchCode"].ToString();
+                    ItemInEditMode2.BankCode = branchCode;
+
+                    string bankCode = dr["BankCode"].ToString();
+                    ItemInEditMode2.BranchCode = bankCode;
+
+                    string chequeName = dr["cheque_Name"].ToString();
+                    ItemInEditMode2.ChequeName = chequeName;
+
+                    string accountNo = dr["account_no"].ToString();
+                    ItemInEditMode2.AccountNo = accountNo;
+                }
+           
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                DB_Con.adapter.Dispose();
+                DB_Con.con.Close();
+                DB_Con.con.Dispose();
+            }
+        }
+        public void Search()
+        {
+            try
+            {
+             SaveCommand = new DelegateCommand(Search, () => CanSave);
+
+             SearchSupplier();
+            }
+
+
+           catch (Exception ex)
+            {
+               MessageBox.Show(ex.ToString());
+            }
+
+         }
+
+        #endregion
+
+
+
+      
+        
     }
 }
