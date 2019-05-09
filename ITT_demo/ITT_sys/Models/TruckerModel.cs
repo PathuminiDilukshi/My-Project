@@ -13,5 +13,6 @@ namespace ITT_sys.Models
         public string TruckSize { get; set; }
         public string Status { get; set; }
         public string registerDate { get; set; }
+        public DateTime JoinDate { get; set; }
     }
 }

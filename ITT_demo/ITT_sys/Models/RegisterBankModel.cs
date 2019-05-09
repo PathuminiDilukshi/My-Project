@@ -56,5 +56,7 @@ namespace ITT_sys.Models
 
         }
 
+
+        public string SupplierCode { get; set; }
     }
 }

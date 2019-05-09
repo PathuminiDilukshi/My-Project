@@ -28,11 +28,14 @@ namespace ITT_sys.Views
         List<int> lstSelectedEmpNo;
         static public string Title;
         TruckerModel objEmpToAdd = new TruckerModel();
+        TruckerModel objSupToAdd = new TruckerModel();
         SupplierRegisterViewModel objDs = new SupplierRegisterViewModel();
+       
 
         public SupplierRegisterView()
         {
             InitializeComponent();
+          //  var dataprovider = (System.Windows.Data.XmlDataProvider)(((UserControl1)(elementHost1.Child)).Resources["rssData"]);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -40,6 +43,9 @@ namespace ITT_sys.Views
 
             dgEmp.ItemsSource = objDs.GetAlltruckers();
             lstSelectedEmpNo = new List<int>();
+
+            ComboBox.ItemsSource = objDs.FillList();
+            //dgSup.ItemsSource = objDs.Gettruckers();
         }
 
         private void DataGrid_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -86,11 +92,11 @@ namespace ITT_sys.Views
         {
             try
             {
-                FrameworkElement element_TruckId = dgEmp.Columns[0].GetCellContent(e.Row);
-                if (element_TruckId.GetType() == typeof(TextBox))
+                FrameworkElement element_TruckType = dgEmp.Columns[1].GetCellContent(e.Row);
+                if (element_TruckType.GetType() == typeof(TextBox))
                 {
-                    var truckId = ((TextBox)element_TruckId).Text;
-                    objEmpToAdd.TruckId = Convert.ToString(truckId);
+                    var truckType = ((TextBox)element_TruckType).Text;
+                    objEmpToAdd.TruckType = Convert.ToString(truckType);
                 }
 
                 FrameworkElement element_TruckSize = dgEmp.Columns[2].GetCellContent(e.Row);
@@ -98,13 +104,6 @@ namespace ITT_sys.Views
                 {
                     var truckSize = ((TextBox)element_TruckSize).Text;
                     objEmpToAdd.TruckSize = Convert.ToString(truckSize);
-                }
-
-                FrameworkElement element_TruckType = dgEmp.Columns[1].GetCellContent(e.Row);
-                if (element_TruckType.GetType() == typeof(TextBox))
-                {
-                    var truckType = ((TextBox)element_TruckType).Text;
-                    objEmpToAdd.TruckType = Convert.ToString(truckType);
                 }
 
                 FrameworkElement element_Status = dgEmp.Columns[3].GetCellContent(e.Row);
@@ -144,7 +143,6 @@ namespace ITT_sys.Views
                 if (Res == MessageBoxResult.Yes)
                 {
                     objDs.InsertEmployee(objEmpToAdd);
-                    //ReadOnlyProperty, Value = true;
                     dgEmp.Columns[0].IsReadOnly = true;
 
                 }
@@ -155,10 +153,79 @@ namespace ITT_sys.Views
             }
         }
 
+        private void update_btn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var Res = MessageBox.Show("Do you want to Update this entry", "Confirm", MessageBoxButton.YesNo);
+                if (Res == MessageBoxResult.Yes)
+                {
+                    objDs.updateSupplier(objSupToAdd);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
+        private void dgSup_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+            objSupToAdd = dgSup.SelectedItem as TruckerModel;
 
+        }
 
+        private void dgSup_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            try
+            {
+                FrameworkElement element_TruckId = dgSup.Columns[0].GetCellContent(e.Row);
+                if (element_TruckId.GetType() == typeof(TextBox))
+                {
+                    var truckId = ((TextBox)element_TruckId).Text;
+                    objSupToAdd.TruckId = Convert.ToString(truckId);
+                }
+
+                FrameworkElement element_TruckSize = dgSup.Columns[2].GetCellContent(e.Row);
+                if (element_TruckSize.GetType() == typeof(TextBox))
+                {
+                    var truckSize = ((TextBox)element_TruckSize).Text;
+                    objSupToAdd.TruckSize = Convert.ToString(truckSize);
+                }
+
+                FrameworkElement element_TruckType = dgSup.Columns[1].GetCellContent(e.Row);
+                if (element_TruckType.GetType() == typeof(TextBox))
+                {
+                    var truckType = ((TextBox)element_TruckType).Text;
+                    objSupToAdd.TruckType = Convert.ToString(truckType);
+                }
+
+                FrameworkElement element_Status = dgSup.Columns[3].GetCellContent(e.Row);
+                if (element_Status.GetType() == typeof(TextBox))
+                {
+                    var status = ((TextBox)element_Status).Text;
+                    objSupToAdd.Status = Convert.ToString(status);
+                }
+
+                FrameworkElement element_regDate = dgSup.Columns[4].GetCellContent(e.Row);
+                if (element_Status.GetType() == typeof(TextBox))
+                {
+                    var JoinDate = ((TextBox)element_Status).Text;
+                    objSupToAdd.JoinDate = Convert.ToDateTime(JoinDate);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dgSup_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+           
+        }
         //private void Delete_btn_Click(object sender, RoutedEventArgs e)
         //{
         //    try

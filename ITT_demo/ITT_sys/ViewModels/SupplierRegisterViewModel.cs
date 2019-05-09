@@ -23,9 +23,14 @@ namespace ITT_sys.ViewModels
     public class SupplierRegisterViewModel : Conductor<object>, INotifyPropertyChanged
     {
 
+       
+
         #region propties initializing
+
+
         static public string SupName;
         static public int supID ;
+       static int sID;
 
 
         
@@ -255,13 +260,19 @@ namespace ITT_sys.ViewModels
 
             set { _registerdate = value; }
         }
+
+        private DateTime _joinDate;
+
+        public DateTime JoinDate
+        {
+            get { return _joinDate; }
+            set { _joinDate = value; }
+        }
+
         
-
-
-
         DBCon DB_Con = new DBCon();
 
-
+       
         #endregion
 
         #region btton_click
@@ -297,7 +308,7 @@ namespace ITT_sys.ViewModels
                     TruckId = (Reader["TruckId"]).ToString(),
                     TruckSize = (Reader["Truck_size"]).ToString(),
                     TruckType = (Reader["Truck_Type"]).ToString(),
-                    registerDate = (Reader["Join_date"]).ToString(),
+                    registerDate = (Reader["Truck_Type"]).ToString(),
                     Status = (Reader["Status"]).ToString()
                 });
             }
@@ -305,6 +316,8 @@ namespace ITT_sys.ViewModels
             DB_Con.CloseCon();
             return TruckCol;
         }
+
+      
 
         public bool CanRegister(string supplierName, string branchCode, string bankCode)
         {
@@ -409,59 +422,152 @@ namespace ITT_sys.ViewModels
 
         #region update_supplier
 
-        private RegisterBankModel _selectedValue;
+        //public ObservableCollection<SupplierModel> SupplierDetails { get; set; }
 
-        public RegisterBankModel SelectedValue
+        //private void FillList()
+        //{
+        //    try
+        //    {
+        //        DB_Con.connection_Sql();
+        //        DB_Con.con.Open();
+        //        DB_Con.com = new SqlCommand("select Supplier_Code from Supplier_details1", DB_Con.con);
+        //        DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
+        //        DB_Con.ds = new DataSet();
+        //        DB_Con.adapter.Fill(DB_Con.ds, "tblBankdetails");
+
+        //        if (SupplierDetails == null)
+        //            SupplierDetails = new ObservableCollection<SupplierModel>();
+
+        //        foreach (DataRow dr in DB_Con.ds.Tables[0].Rows)
+        //        {
+        //            SupplierDetails.Add(new SupplierModel
+        //            {
+        //                SupplierCode = dr["Supplier_Code"].ToString()
+
+        //            });
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //    finally
+        //    {
+        //        DB_Con.ds = null;
+        //        DB_Con.adapter.Dispose();
+        //        DB_Con.con.Close();
+        //        DB_Con.con.Dispose();
+        //    }
+        //}
+
+        private SupplierModel _selectedValue;
+
+        public SupplierModel SelectedValue
         {
             get { return _selectedValue; }
 
             set
             {
-
                 _selectedValue = value;
                 NotifyOfPropertyChange(() => SelectedValue);
 
+                FillSupplierDetails(_selectedValue.SupplierCode);
                 NotifyOfPropertyChange(() => ItemInEditMode2);
+
+                Gettruckers(_selectedValue.SupplierCode);
+
             }
         }
 
-        private SupplierModel _itemInEditMode2 = new SupplierModel();
+        private ObservableCollection<TruckerModel> _truckDetails = new ObservableCollection<TruckerModel>();
 
-        public SupplierModel ItemInEditMode2
+        public ObservableCollection<TruckerModel> TruckerDetails
         {
-            get { return _itemInEditMode2; }
-
-     
+            get { return _truckDetails; }
+            set { _truckDetails = value; }
         }
 
 
-
-        public SupplierRegisterViewModel()
+        public void Gettruckers( string supcode)
         {
+           
+            string query = "select sID  from Supplier_details1 where Supplier_Code = '" + _selectedValue.SupplierCode + "'";
+            sID = DB_Con.getSupID(query);
 
-        }
+            DB_Con.OpenCon();
+            DB_Con.com = new SqlCommand();
+            DB_Con.com.Connection = DB_Con.con;
+            DB_Con.com.CommandText = "Select TruckId,Truck_size,Truck_Type,Join_date,Status from Trucker_Details where sup_code='" + sID + "'";
 
-       
-
-        public ObservableCollection<SupplierModel> SupplierDetails { get; set; }
-
-        
-        private void SearchSupplier()
-        {
              
+            SqlDataReader Reader = DB_Con.com.ExecuteReader();
 
-            
-            try{
+            while (Reader.Read())
+            {
+                TruckerDetails.Add(new TruckerModel()
+                {
+                    TruckId = (Reader["TruckId"]).ToString(),
+                    TruckSize = (Reader["Truck_size"]).ToString(),
+                    TruckType = (Reader["Truck_Type"]).ToString(),
+                    JoinDate = (Convert.ToDateTime(Reader["Join_date"])),
+                    Status = (Reader["Status"]).ToString()
+                });
+                Console.WriteLine("register date" + registerDate);
+            }
+            DB_Con.CloseCon();
+        }
 
-                string query = "select * from Supplier_details1 where Supplier_Code like '%" + SupplierCode + "%'";
+        public ObservableCollection<SupplierModel> FillList()
+        {
+            ObservableCollection<SupplierModel> SupplierDetails = new ObservableCollection<SupplierModel>();
+            try
+            {
                 DB_Con.connection_Sql();
-                DB_Con.OpenCon();
-                DB_Con.com = new SqlCommand(query, DB_Con.con);
+                DB_Con.con.Open();
+                DB_Con.com = new SqlCommand("select Supplier_Code from Supplier_details1", DB_Con.con);
                 DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
                 DB_Con.ds = new DataSet();
-                DB_Con.adapter.Fill(DB_Con.ds, "tb2Bankdetails");
+                DB_Con.adapter.Fill(DB_Con.ds, "tblBankdetails");
+
+                if (SupplierDetails == null)
+                    SupplierDetails = new ObservableCollection<SupplierModel>();
 
                 foreach (DataRow dr in DB_Con.ds.Tables[0].Rows)
+                {
+                    SupplierDetails.Add(new SupplierModel
+                    {
+                        SupplierCode = dr["Supplier_Code"].ToString()
+
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            finally
+            {
+                DB_Con.com.Dispose();
+                DB_Con.con.Close();
+            }
+            
+              return SupplierDetails;
+        }
+
+        private void FillSupplierDetails(string supCode)
+        {
+            try
+            {
+                DB_Con.con = new SqlConnection(DB_Con.ConString);
+                DB_Con.con.Open();
+                string query = "select * from Supplier_details1 where Supplier_Code = '" + supCode + "'";
+                DB_Con.com = new SqlCommand(query, DB_Con.con);
+                SqlDataAdapter da = new SqlDataAdapter(DB_Con.com);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "tblBankdetails");
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     string supName = dr["Supplier_name"].ToString();
                     ItemInEditMode2.SupplierName = supName;
@@ -499,27 +605,125 @@ namespace ITT_sys.ViewModels
                     string accountNo = dr["account_no"].ToString();
                     ItemInEditMode2.AccountNo = accountNo;
                 }
-           
+
+                DB_Con.com.Dispose();
+                DB_Con.con.Close();
             }
 
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            finally
-            {
-                DB_Con.adapter.Dispose();
-                DB_Con.con.Close();
-                DB_Con.con.Dispose();
-            }
         }
+
+
+        private SupplierModel _itemInEditMode2 = new SupplierModel();
+
+        public SupplierModel ItemInEditMode2
+        {
+            get { return _itemInEditMode2; }
+        }
+
+        //private void SearchSupplier()
+        //{
+
+        //    try
+        //    {
+
+        //        string query = "select * from Supplier_details1 where Supplier_Code like '%" + SupplierCode + "%'";
+        //        DB_Con.connection_Sql();
+        //        DB_Con.OpenCon();
+        //        DB_Con.com = new SqlCommand(query, DB_Con.con);
+        //        DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
+        //        DB_Con.ds = new DataSet();
+        //        DB_Con.adapter.Fill(DB_Con.ds, "tb2Bankdetails");
+
+        //        foreach (DataRow dr in DB_Con.ds.Tables[0].Rows)
+        //        {
+        //            string supName = dr["Supplier_name"].ToString();
+        //            ItemInEditMode2.SupplierName = supName;
+
+        //            string contactPerson = dr["RecepientName"].ToString();
+        //            ItemInEditMode2.ContactPerson = contactPerson;
+
+        //            string contactNo = dr["Mobile_Number"].ToString();
+        //            ItemInEditMode2.ContactNo = contactNo;
+
+        //            string faxNo = dr["Fax_Number"].ToString();
+        //            ItemInEditMode2.FaxNo = faxNo;
+
+        //            string addrLine1 = dr["Address1"].ToString();
+        //            ItemInEditMode2.AddrLine1 = addrLine1;
+
+        //            string addrLine2 = dr["Address2"].ToString();
+        //            ItemInEditMode2.AddrLine2 = addrLine2;
+
+        //            string addrLine3 = dr["Address3"].ToString();
+        //            ItemInEditMode2.AddrLine3 = addrLine3;
+
+        //            string email = dr["Email"].ToString();
+        //            ItemInEditMode2.Email = email;
+
+        //            string branchCode = dr["BranchCode"].ToString();
+        //            ItemInEditMode2.BankCode = branchCode;
+
+        //            string bankCode = dr["BankCode"].ToString();
+        //            ItemInEditMode2.BranchCode = bankCode;
+
+        //            string chequeName = dr["cheque_Name"].ToString();
+        //            ItemInEditMode2.ChequeName = chequeName;
+
+        //            string accountNo = dr["account_no"].ToString();
+        //            ItemInEditMode2.AccountNo = accountNo;
+        //        }
+
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //    finally
+        //    {
+        //        DB_Con.adapter.Dispose();
+        //        DB_Con.con.Close();
+        //        DB_Con.con.Dispose();
+        //    }
+        //}
+
+        public void updateSupplier(TruckerModel objSupToAdd)
+        {
+            try
+            {
+                int supcode = sID;
+                Console.WriteLine("supplier Code = " + supcode);
+                DB_Con.OpenCon();
+                DB_Con.com = new SqlCommand();
+                DB_Con.com.Connection = DB_Con.con;
+                string query = "UPDATE Trucker_Details SET Truck_size ='" + objSupToAdd.TruckSize.Trim() + "',Truck_Type ='" + objSupToAdd.TruckType.Trim() + "',Join_date = '" + objSupToAdd.JoinDate + "',Status='" + objSupToAdd.Status.Trim() + "'  where sup_code='" + supcode + "'";
+
+                int noline = DB_Con.insert(query);
+
+                if (noline > 0)
+                {
+                    MessageBox.Show("Update Successfully");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+           
+           
+        }
+
         public void Search()
         {
             try
             {
-             SaveCommand = new DelegateCommand(Search, () => CanSave);
-
-             SearchSupplier();
+                SaveCommand = new DelegateCommand(Search, () => CanSave);
             }
 
 
@@ -532,9 +736,5 @@ namespace ITT_sys.ViewModels
 
         #endregion
 
-
-
-      
-        
     }
 }
