@@ -163,45 +163,45 @@ namespace ITT_sys.ViewModels
 
 		public void save()
 		{
-            SaveCommand = new DelegateCommand(save, () => CanSave);
-      
-            string Query = "select COUNT(*) from Branch_details where  BankCode ='" + this._selectedValue.BankCode.Trim() + "' and Branch_Code='" + this.BranchCode + "'";
+			SaveCommand = new DelegateCommand(save, () => CanSave);
+	  
+			string Query = "select COUNT(*) from Branch_details where  BankCode ='" + this._selectedValue.BankCode.Trim() + "' and Branch_Code='" + this.BranchCode + "'";
 
 			int lines = DB_Con.RecordExists(Query);
 
-            if (lines > 0)
-            {
-                MessageBox.Show("This BankCode and BranchCode exist in DataBase ");
-            }
-            else
-            {
-                try
-                {
-                    string query = "INSERT INTO Branch_details (BankCode,Branch_Code,Branch_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no)VALUES('"
-                        + _selectedValue.BankCode.Trim() + "','"
-                        + this.BranchCode + "','"
-                        + this.BranchName + "','"
-                        + this.AddressLine1 + "','"
-                        + this.AddressLine2 + "','"
-                        + this.AddressLine3 + "','"
-                        + this.Email + "','"
-                        + this.ContactNo + "');";
-                    int noline = DB_Con.insert(query);
-                    if (noline > 0)
-                    {
-                        MessageBox.Show("Data inserted Successfully");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Try again!");
-                    }
+			if (lines > 0)
+			{
+				MessageBox.Show("This BankCode and BranchCode exist in DataBase ");
+			}
+			else
+			{
+				try
+				{
+					string query = "INSERT INTO Branch_details (BankCode,Branch_Code,Branch_Name,Address_line1,Address_line2,Address_line3,Email,Tel_no)VALUES('"
+						+ _selectedValue.BankCode.Trim() + "','"
+						+ this.BranchCode + "','"
+						+ this.BranchName + "','"
+						+ this.AddressLine1 + "','"
+						+ this.AddressLine2 + "','"
+						+ this.AddressLine3 + "','"
+						+ this.Email + "','"
+						+ this.ContactNo + "');";
+					int noline = DB_Con.insert(query);
+					if (noline > 0)
+					{
+						MessageBox.Show("Data inserted Successfully");
+					}
+					else
+					{
+						MessageBox.Show("Try again!");
+					}
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            }
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.ToString());
+				}
+			}
 		}
 
 		public void Clearbtn()
@@ -226,7 +226,7 @@ namespace ITT_sys.ViewModels
 			{
 				DB_Con.connection_Sql();
 				DB_Con.con.Open();
-                DB_Con.com = new SqlCommand("select BankCode from Bank_details", DB_Con.con);
+				DB_Con.com = new SqlCommand("select BankCode from Bank_details", DB_Con.con);
 				DB_Con.adapter = new SqlDataAdapter(DB_Con.com);
 				DB_Con.ds = new DataSet();
 				DB_Con.adapter.Fill(DB_Con.ds, "tblBankdetails");
@@ -263,7 +263,7 @@ namespace ITT_sys.ViewModels
 			{
 				DB_Con.con = new SqlConnection(DB_Con.ConString);
 				DB_Con.con.Open();
-                string query = "select BankName from Bank_details where BankCode='" + BankCode + "'";
+				string query = "select BankName from Bank_details where BankCode='" + BankCode + "'";
 				DB_Con.com = new SqlCommand(query, DB_Con.con);
 				SqlDataAdapter da = new SqlDataAdapter(DB_Con.com);
 				DataSet ds = new DataSet();
@@ -271,7 +271,7 @@ namespace ITT_sys.ViewModels
 
 				foreach (DataRow dr in ds.Tables[0].Rows)
 				{
-                    string Bank_Name = dr["BankName"].ToString();
+					string Bank_Name = dr["BankName"].ToString();
 					_itemInEditMode.BankName = Bank_Name;
 				}
 			}
@@ -392,43 +392,43 @@ namespace ITT_sys.ViewModels
 
 		public void update()
 		{
-            SaveCommand = new DelegateCommand(update, () => CanSave);
+			SaveCommand = new DelegateCommand(update, () => CanSave);
 
-            string Query = "select COUNT(*) from Branch_details where  BankCode ='" + this._selectedValue2.BankCode.Trim() + "' and BranchCode='" + this._itemInEditMode2.BranchCode.Trim() + "'";
+			string Query = "select COUNT(*) from Branch_details where  BankCode ='" + this._selectedValue2.BankCode.Trim() + "' and BranchCode='" + this._itemInEditMode2.BranchCode.Trim() + "'";
 
 			int lines = DB_Con.RecordExists(Query);
 
-            if (lines == 1)
-            {
-                try
-                {
+			if (lines == 1)
+			{
+				try
+				{
 
-                    string query = " UPDATE Branch_details SET BankCode = '" + _selectedValue2.BankCode.Trim() + "',BranchCode ='" + this._itemInEditMode2.BranchCode.Trim() + "',BranchName = '" + this._itemInEditMode2.BranchName.Trim() + "',Address_line1 = '" + this._itemInEditMode2.AddressLine1.Trim() + "',Address_line2 = '" + this._itemInEditMode2.AddressLine1.Trim() + "',Address_line3 = '" + this._itemInEditMode2.AddressLine1.Trim() + "',Email ='" + this._itemInEditMode2.Email.Trim() + "' ,Tel_no ='" + this._itemInEditMode2.ContactNo.Trim() + "' WHERE BankCode = '" + _selectedValue2.BankCode.Trim() + "' AND BranchCode ='" + this._itemInEditMode2.BranchCode.Trim() + "' ";
+					string query = " UPDATE Branch_details SET BankCode = '" + _selectedValue2.BankCode.Trim() + "',BranchCode ='" + this._itemInEditMode2.BranchCode.Trim() + "',BranchName = '" + this._itemInEditMode2.BranchName.Trim() + "',Address_line1 = '" + this._itemInEditMode2.AddressLine1.Trim() + "',Address_line2 = '" + this._itemInEditMode2.AddressLine1.Trim() + "',Address_line3 = '" + this._itemInEditMode2.AddressLine1.Trim() + "',Email ='" + this._itemInEditMode2.Email.Trim() + "' ,Tel_no ='" + this._itemInEditMode2.ContactNo.Trim() + "' WHERE BankCode = '" + _selectedValue2.BankCode.Trim() + "' AND BranchCode ='" + this._itemInEditMode2.BranchCode.Trim() + "' ";
 
-                    int noline = DB_Con.insert(query);
+					int noline = DB_Con.insert(query);
 
-                    if (noline > 0)
-                    {
-                        MessageBox.Show("Data Updated Successfully");
-                        ActivateItem(new BranchRecordsViewModel());
-                    }
-                    else
-                    {
-                        MessageBox.Show("Try again!");
-                    }
+					if (noline > 0)
+					{
+						MessageBox.Show("Data Updated Successfully");
+						ActivateItem(new BranchRecordsViewModel());
+					}
+					else
+					{
+						MessageBox.Show("Try again!");
+					}
 
-                }
+				}
 
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            }
-            else
-            {
-                MessageBox.Show("Does not exist a record where Bank Code is '" + this._selectedValue2.BankCode.Trim() + "' and BranchCode is '" + this._itemInEditMode2.BranchCode.Trim() + "'" );
-            }
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.ToString());
+				}
+			}
+			else
+			{
+				MessageBox.Show("Does not exist a record where Bank Code is '" + this._selectedValue2.BankCode.Trim() + "' and BranchCode is '" + this._itemInEditMode2.BranchCode.Trim() + "'" );
+			}
 
 		}
 

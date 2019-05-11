@@ -489,7 +489,7 @@ namespace ITT_sys.ViewModels
 				{
 					deleteBankModel.Add(new RegisterBankModel
 					{
-  					    BankCode = dr[0].ToString()
+						BankCode = dr[0].ToString()
 					});
 				}
 			}

@@ -24,17 +24,20 @@ namespace ITT_sys.Views
     /// </summary>
     public partial class SupplierRegisterView : UserControl
     {
-
+        List<TruckerModel> t1;
         List<int> lstSelectedEmpNo;
         static public string Title;
         TruckerModel objEmpToAdd = new TruckerModel();
         TruckerModel objSupToAdd = new TruckerModel();
         SupplierRegisterViewModel objDs = new SupplierRegisterViewModel();
+        static int index;
+        SupplierRegisterViewModel objContext;
        
 
         public SupplierRegisterView()
         {
             InitializeComponent();
+            DataContext = objDs.GetAlltruckers();
           //  var dataprovider = (System.Windows.Data.XmlDataProvider)(((UserControl1)(elementHost1.Child)).Resources["rssData"]);
         }
 
@@ -45,7 +48,6 @@ namespace ITT_sys.Views
             lstSelectedEmpNo = new List<int>();
 
             ComboBox.ItemsSource = objDs.FillList();
-            //dgSup.ItemsSource = objDs.Gettruckers();
         }
 
         private void DataGrid_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -55,8 +57,7 @@ namespace ITT_sys.Views
             e.Handled = true;
         }
 
-        private void DatePicker_SelectedDateChanged(object sender,
-          SelectionChangedEventArgs e)
+        private void DatePicker_SelectedDateChanged(object sender,SelectionChangedEventArgs e)
         {
             // ... Get DatePicker reference.
             var picker = sender as DatePicker;
@@ -112,8 +113,9 @@ namespace ITT_sys.Views
                     var status = ((TextBox)element_Status).Text;
                     objEmpToAdd.Status = Convert.ToString(status); 
                 }
-
             }
+
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -174,6 +176,16 @@ namespace ITT_sys.Views
 
             objSupToAdd = dgSup.SelectedItem as TruckerModel;
 
+            var dg = sender as DataGrid;
+            if (dg == null) return;
+            index = dg.SelectedIndex;
+            Console.WriteLine("row index =" + index);
+            //here we get the actual row at selected index
+            DataGridRow row = dg.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+
+            //here we get the actual data item behind the selected row
+            var item = dg.ItemContainerGenerator.ItemFromContainer(row);
+            Console.WriteLine("row item =" + item);
         }
 
         private void dgSup_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -186,20 +198,19 @@ namespace ITT_sys.Views
                     var truckId = ((TextBox)element_TruckId).Text;
                     objSupToAdd.TruckId = Convert.ToString(truckId);
                 }
-
-                FrameworkElement element_TruckSize = dgSup.Columns[2].GetCellContent(e.Row);
-                if (element_TruckSize.GetType() == typeof(TextBox))
-                {
-                    var truckSize = ((TextBox)element_TruckSize).Text;
-                    objSupToAdd.TruckSize = Convert.ToString(truckSize);
-                }
-
                 FrameworkElement element_TruckType = dgSup.Columns[1].GetCellContent(e.Row);
                 if (element_TruckType.GetType() == typeof(TextBox))
                 {
                     var truckType = ((TextBox)element_TruckType).Text;
                     objSupToAdd.TruckType = Convert.ToString(truckType);
                 }
+
+                FrameworkElement element_TruckSize = dgSup.Columns[2].GetCellContent(e.Row);
+                if (element_TruckSize.GetType() == typeof(TextBox))
+                {
+                    var truckSize = ((TextBox)element_TruckSize).Text;
+                    objSupToAdd.TruckSize = Convert.ToString(truckSize);
+                }   
 
                 FrameworkElement element_Status = dgSup.Columns[3].GetCellContent(e.Row);
                 if (element_Status.GetType() == typeof(TextBox))
@@ -211,7 +222,7 @@ namespace ITT_sys.Views
                 FrameworkElement element_regDate = dgSup.Columns[4].GetCellContent(e.Row);
                 if (element_Status.GetType() == typeof(TextBox))
                 {
-                    var JoinDate = ((TextBox)element_Status).Text;
+                    var JoinDate = ((TextBox)element_regDate).Text;
                     objSupToAdd.JoinDate = Convert.ToDateTime(JoinDate);
                 }
 
@@ -226,24 +237,37 @@ namespace ITT_sys.Views
         {
            
         }
-        //private void Delete_btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        var Res = MessageBox.Show("Do you want to Delete this new entry", "Confirm", MessageBoxButton.YesNo);
-        //        if (Res == MessageBoxResult.Yes)
-        //        {
-        //            objDs.DeleteTruck(objEmpToAdd);
-        //        }
+        private void Delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var Res = MessageBox.Show("Do you want to Delete this new entry", "Confirm", MessageBoxButton.YesNo);
+                if (Res == MessageBoxResult.Yes)
+                {
+                    objDs.DeleteTruck(objEmpToAdd);
+                }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-        //}
+        }
 
+        private void sup_delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+            //if (dgSup.SelectedItem != null)
+            //{
+            //    Console.WriteLine("selected item=" + dgSup.SelectedItem);
+            //    this.dgSup.Items.Remove(dgSup.SelectedItem);
+            //}
+            objDs.DeleteTruck(objEmpToAdd);
+            dgSup.Items.RemoveAt(index);
+        }
+
+      
 
         
 

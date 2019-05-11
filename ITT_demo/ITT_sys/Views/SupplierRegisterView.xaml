@@ -1,159 +1,159 @@
 ﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-             xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
-             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             x:Class="ITT_sys.Views.SupplierRegisterView"
-             xmlns:local="clr-namespace:ITT_sys.Views"
-             xmlns:m="clr-namespace:ITT_sys.ViewModels"
-             mc:Ignorable="d"
-             TextElement.FontWeight="Regular"
-             TextOptions.TextFormattingMode="Ideal"
-             TextOptions.TextRenderingMode="Auto"
-             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{StaticResource MaterialDesignFont}"
-             Loaded="Window_Loaded"
-             d:DesignHeight="1000" d:DesignWidth="1000">
-    <Border Padding="10">
-        <StackPanel>
-            <dragablz:TabablzControl >
-                <dragablz:TabablzControl.InterTabController>
-                    <dragablz:InterTabController />
-                </dragablz:TabablzControl.InterTabController>
-                <!--Register item header-->
-                <TabItem Header="Register">
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+			 xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+			 xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+			 x:Class="ITT_sys.Views.SupplierRegisterView"
+			 xmlns:local="clr-namespace:ITT_sys.Views"
+			 xmlns:m="clr-namespace:ITT_sys.ViewModels"
+			 mc:Ignorable="d"
+			 TextElement.FontWeight="Regular"
+			 TextOptions.TextFormattingMode="Ideal"
+			 TextOptions.TextRenderingMode="Auto"
+			 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+			 Background="{DynamicResource MaterialDesignPaper}"
+			 FontFamily="{StaticResource MaterialDesignFont}"
+			 Loaded="Window_Loaded"
+			 d:DesignHeight="1000" d:DesignWidth="1000">
+	<Border Padding="10">
+		<StackPanel>
+			<dragablz:TabablzControl >
+				<dragablz:TabablzControl.InterTabController>
+					<dragablz:InterTabController />
+				</dragablz:TabablzControl.InterTabController>
+				<!--Register item header-->
+				<TabItem Header="Register">
 
-                    <StackPanel Margin="10,0,30,0">
-                        <Grid Margin="0 25 0 10 ">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="  Supplier Registration" FontSize="30" FontFamily="Nyala" FontWeight="Bold" />
-                        </Grid>
-                        <!--Supplier Details-->
-                        <TextBlock Margin="10,30,0,0" Text="Supplier Details" FontSize="15" FontWeight="Bold" FontFamily="Segoe WP" />
+					<StackPanel Margin="10,0,30,0">
+						<Grid Margin="0 25 0 10 ">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Text="  Supplier Registration" FontSize="30" FontFamily="Nyala" FontWeight="Bold" />
+						</Grid>
+						<!--Supplier Details-->
+						<TextBlock Margin="10,30,0,0" Text="Supplier Details" FontSize="15" FontWeight="Bold" FontFamily="Segoe WP" />
 
-                        <Grid Margin="10,1,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox x:Name="SupplierName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Supplier Name" FontFamily="Segoe WP" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox x:Name="ContactPerson" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Person" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
-
-                        <!--contact and mobile numbers-->
-                        <Grid  Margin="10,-30,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox x:Name="ContactNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Number" FontFamily="Segoe WP"/>
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox x:Name="FaxNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Fax Number" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
-
-                        <!--Address lines-->
-                        <Grid  Margin="10,-30,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox x:Name="AddrLine1" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line1"  FontFamily="Segoe WP"/>
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox  x:Name="AddrLine2"  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line2" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
-
-                        <!--City and Email-->
-                        <Grid  Margin="10,-30,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox x:Name="AddrLine3" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="City"  FontFamily="Segoe WP"/>
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox x:Name="Email" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
-
-                        <!--Bank Details-->
-                        <TextBlock Margin="10,25,0,0" Text="Bank Details" FontSize="15" FontWeight="Bold" FontFamily="Segoe WP" />
+						<Grid Margin="10,1,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
 
 
-                        <Grid Margin="10,1,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox x:Name="SupplierName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Supplier Name" FontFamily="Segoe WP" />
+							</StackPanel>
+
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox x:Name="ContactPerson" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Person" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
+
+						<!--contact and mobile numbers-->
+						<Grid  Margin="10,-30,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox x:Name="ContactNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Number" FontFamily="Segoe WP"/>
+							</StackPanel>
+
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox x:Name="FaxNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Fax Number" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
+
+						<!--Address lines-->
+						<Grid  Margin="10,-30,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox x:Name="AddrLine1" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line1"  FontFamily="Segoe WP"/>
+							</StackPanel>
+
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox  x:Name="AddrLine2"  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line2" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
+
+						<!--City and Email-->
+						<Grid  Margin="10,-30,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox x:Name="AddrLine3" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="City"  FontFamily="Segoe WP"/>
+							</StackPanel>
+
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox x:Name="Email" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
+
+						<!--Bank Details-->
+						<TextBlock Margin="10,25,0,0" Text="Bank Details" FontSize="15" FontWeight="Bold" FontFamily="Segoe WP" />
 
 
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox x:Name="BankCode" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Bank Code"  FontFamily="Segoe WP"/>
-                            </StackPanel>
+						<Grid Margin="10,1,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox x:Name="BranchCode" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Branch Code" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
 
-                        <!--Cheque name and Account no-->
-                        <Grid  Margin="10,-30,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox x:Name="BankCode" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Bank Code"  FontFamily="Segoe WP"/>
+							</StackPanel>
 
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox x:Name="ChequeName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Cheque Name" FontFamily="Segoe WP" />
-                            </StackPanel>
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox x:Name="BranchCode" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Branch Code" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
 
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox x:Name="AccountNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Account Number" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
+						<!--Cheque name and Account no-->
+						<Grid  Margin="10,-30,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
 
-                        <Grid Margin="10,-10,0,0">
-                            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding IsSelected}" />
-                                <TextBlock Text="E-Transaction" Margin="10,5,5,5"/>
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox x:Name="ChequeName" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Cheque Name" FontFamily="Segoe WP" />
+							</StackPanel>
 
-                            </StackPanel>
-                        </Grid>
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox x:Name="AccountNo" Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Account Number" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
 
-                        <Grid  Margin="10,20,0,0">
-                            <StackPanel  Margin="-50 10 0 30" >
-                                <Button x:Name="Register" Command="{Binding SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
-                            </StackPanel>
-                        </Grid>
+						<Grid Margin="10,-10,0,0">
+							<StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+								<CheckBox IsChecked="{Binding IsSelected}" />
+								<TextBlock Text="E-Transaction" Margin="10,5,5,5"/>
 
-                        <Grid Margin="10,10,0,0">
+							</StackPanel>
+						</Grid>
 
-                            <DataGrid CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding TruckerDetails}" x:Name="dgEmp"             
+						<Grid  Margin="10,20,0,0">
+							<StackPanel  Margin="-50 10 0 30" >
+								<Button x:Name="Register" Command="{Binding SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
+							</StackPanel>
+						</Grid>
+
+						<Grid Margin="10,10,0,0">
+
+							<DataGrid CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding TruckerDetails}" x:Name="dgEmp"             
 								CellEditEnding="dgEmp_CellEditEnding"
 								SelectionChanged="dgEmp_SelectionChanged"
 								ScrollViewer.VerticalScrollBarVisibility="Auto"  
@@ -163,215 +163,215 @@
 								HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 								AlternatingRowBackground="#FF6D6F98" BorderThickness="1,1,1,1" GridLinesVisibility="All" HorizontalGridLinesBrush="#FF565F9B" VerticalGridLinesBrush="#FF565F9B" RowHeight="50" Background="White" BorderBrush="#FF4F4F7F" Foreground="White" >
 
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Truck Id" Width="100"  Binding="{Binding TruckId}"    >
-                                        <DataGridTextColumn.Foreground>
-                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                <GradientStop Color="Black" Offset="0"/>
-                                                <GradientStop Color="White" Offset="1"/>
-                                            </LinearGradientBrush>
-                                        </DataGridTextColumn.Foreground>
-                                    </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Truck Type" Width="100"  Binding="{Binding TruckType}" />
-                                    <DataGridTextColumn Header="Truck Size" Width="100" Binding="{Binding TruckSize}"  />
-                                    <DataGridTextColumn Header="Status"  Width="100" Binding="{Binding Status}" />
-                                    <DataGridTemplateColumn Header="Registered Date" Width="150">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <DatePicker SelectedDateChanged="DatePicker_SelectedDateChanged" />
-                                                <!--SelectedDate="{Binding StartDate}"-->
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTemplateColumn>
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button x:Name="Add_btn" Click="Add_btn_Click" Margin="0,-10" >
-                                                    <StackPanel Orientation="Horizontal" >
-                                                        <materialDesign:PackIcon Kind="AddCircle" VerticalAlignment="Center" />
-                                                        <TextBlock Text="Add" HorizontalAlignment="Center"  FontFamily="Nyala" Margin="10,0,0,0" />
-                                                    </StackPanel>
-                                                </Button>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <!--<DataGridTemplateColumn>
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button x:Name="Delete_btn" Click="Delete_btn_Click" Margin="0,-10" >
-                                                    <StackPanel Orientation="Horizontal" >
-                                                        <materialDesign:PackIcon Kind="DeleteCircle" VerticalAlignment="Center" />
-                                                        <TextBlock Text="Delete" HorizontalAlignment="Center"  FontFamily="Nyala" Margin="10,0,0,0"  />
-                                                    </StackPanel>
-                                                </Button>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>-->
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
+								<DataGrid.Columns>
+									<DataGridTextColumn Header="Truck Id" Width="100"  Binding="{Binding TruckId}"    >
+										<DataGridTextColumn.Foreground>
+											<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+												<GradientStop Color="Black" Offset="0"/>
+												<GradientStop Color="White" Offset="1"/>
+											</LinearGradientBrush>
+										</DataGridTextColumn.Foreground>
+									</DataGridTextColumn>
+									<DataGridTextColumn Header="Truck Type" Width="100"  Binding="{Binding TruckType}" />
+									<DataGridTextColumn Header="Truck Size" Width="100" Binding="{Binding TruckSize}"  />
+									<DataGridTextColumn Header="Status"  Width="100" Binding="{Binding Status}" />
+									<DataGridTemplateColumn Header="Registered Date" Width="150">
+										<DataGridTemplateColumn.CellTemplate>
+											<DataTemplate>
+												<DatePicker SelectedDateChanged="DatePicker_SelectedDateChanged" />
+												<!--SelectedDate="{Binding StartDate}"-->
+											</DataTemplate>
+										</DataGridTemplateColumn.CellTemplate>
+									</DataGridTemplateColumn>
+									<DataGridTemplateColumn>
+										<DataGridTemplateColumn.CellTemplate>
+											<DataTemplate>
+												<Button x:Name="Add_btn" Click="Add_btn_Click" Margin="0,-10" >
+													<StackPanel Orientation="Horizontal" >
+														<materialDesign:PackIcon Kind="AddCircle" VerticalAlignment="Center" />
+														<TextBlock Text="Add" HorizontalAlignment="Center"  FontFamily="Nyala" Margin="10,0,0,0" />
+													</StackPanel>
+												</Button>
+											</DataTemplate>
+										</DataGridTemplateColumn.CellTemplate>
+									</DataGridTemplateColumn>
+									<!--<DataGridTemplateColumn>
+										<DataGridTemplateColumn.CellTemplate>
+											<DataTemplate>
+												<Button x:Name="Delete_btn" Click="Delete_btn_Click" Margin="0,-10" >
+													<StackPanel Orientation="Horizontal" >
+														<materialDesign:PackIcon Kind="DeleteCircle" VerticalAlignment="Center" />
+														<TextBlock Text="Delete" HorizontalAlignment="Center"  FontFamily="Nyala" Margin="10,0,0,0"  />
+													</StackPanel>
+												</Button>
+											</DataTemplate>
+										</DataGridTemplateColumn.CellTemplate>
+									</DataGridTemplateColumn>-->
+								</DataGrid.Columns>
+							</DataGrid>
+						</Grid>
 
 
-                    </StackPanel>
-                </TabItem>
-                <TabItem Header="Update">
-                    <StackPanel Margin="10,0,30,0" >
-                        <Grid Margin="0 25 0 10 ">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="  Update Supplier Info" FontSize="30" FontFamily="Nyala" FontWeight="Bold" />
-                        </Grid>
+					</StackPanel>
+				</TabItem>
+				<TabItem Header="Update">
+					<StackPanel Margin="10,0,30,0" >
+						<Grid Margin="0 25 0 10 ">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Text="  Update Supplier Info" FontSize="30" FontFamily="Nyala" FontWeight="Bold" />
+						</Grid>
 
-                        <Grid Margin="0 30 0 -10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
+						<Grid Margin="0 30 0 -10">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition Width="3*"/>
+								<ColumnDefinition Width="auto"/>
+							</Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBlock  Text="Supplier Code"  Margin="15,5,-5,0 " FontFamily="Segoe WP" />
-                            </StackPanel>
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBlock  Text="Supplier Code"  Margin="15,5,-5,0 " FontFamily="Segoe WP" />
+							</StackPanel>
 
-                            <StackPanel Grid.Column="1"  Margin="0,0,-10,0"  >
-                                <!--<TextBox  x:Name="SupplierCode"    Margin="10,10,100,10" />-->
-                                <ComboBox Name="ComboBox" ItemsSource="{Binding SupplierDetails}"  SelectedItem="{Binding SelectedValue}"  Grid.Column="1" Margin="5,10,140,10" >
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" >
-                                                <TextBlock Text="{Binding SupplierCode, Mode=TwoWay}"  FontWeight="Bold" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                            </StackPanel>
+							<StackPanel Grid.Column="1"  Margin="0,0,-10,0"  >
+								<!--<TextBox  x:Name="SupplierCode"    Margin="10,10,100,10" />-->
+								<ComboBox Name="ComboBox" ItemsSource="{Binding SupplierDetails}"  SelectedItem="{Binding SelectedValue}"  Grid.Column="1" Margin="5,10,140,10" >
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" >
+												<TextBlock Text="{Binding SupplierCode, Mode=TwoWay}"  FontWeight="Bold" />
+											</StackPanel>
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
 
-                            <!--<StackPanel Grid.Column="2" Margin="10 10 ">
-                                <Button  Margin="0,0,510,10" x:Name="Search" Command="{Binding SaveCommand}" >
-                                    <materialDesign:PackIcon Kind="Search" VerticalAlignment="Center" />
-                                </Button>
-                            </StackPanel>-->
-                        </Grid>
+							<!--<StackPanel Grid.Column="2" Margin="10 10 ">
+								<Button  Margin="0,0,510,10" x:Name="Search" Command="{Binding SaveCommand}" >
+									<materialDesign:PackIcon Kind="Search" VerticalAlignment="Center" />
+								</Button>
+							</StackPanel>-->
+						</Grid>
 
-                        <!--Supplier Details-->
-                        <TextBlock Margin="10,30,0,0" Text="Supplier Details" FontSize="15" FontWeight="Bold" FontFamily="Segoe WP" />
+						<!--Supplier Details-->
+						<TextBlock Margin="10,30,0,0" Text="Supplier Details" FontSize="15" FontWeight="Bold" FontFamily="Segoe WP" />
 
-                        <Grid Margin="10,1,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+						<Grid Margin="10,1,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Supplier Name"
-                                          Text="{Binding ItemInEditMode2.SupplierName, Mode=TwoWay}" FontFamily="Segoe WP" />
-                            </StackPanel>
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Supplier Name"
+										  Text="{Binding ItemInEditMode2.SupplierName, Mode=TwoWay}" FontFamily="Segoe WP" />
+							</StackPanel>
 
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Person"
-                                          Text="{Binding ItemInEditMode2.ContactPerson, Mode=TwoWay}" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Person"
+										  Text="{Binding ItemInEditMode2.ContactPerson, Mode=TwoWay}" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
 
-                        <!--contact and mobile numbers-->
-                        <Grid  Margin="10,-30,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+						<!--contact and mobile numbers-->
+						<Grid  Margin="10,-30,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Number"
-                                          Text="{Binding ItemInEditMode2.ContactNo, Mode=TwoWay}" FontFamily="Segoe WP"/>
-                            </StackPanel>
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contact Number"
+										  Text="{Binding ItemInEditMode2.ContactNo, Mode=TwoWay}" FontFamily="Segoe WP"/>
+							</StackPanel>
 
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Fax Number" 
-                                          Text="{Binding ItemInEditMode2.FaxNo, Mode=TwoWay}"   FontFamily="Segoe WP" />
-                            </StackPanel>
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Fax Number" 
+										  Text="{Binding ItemInEditMode2.FaxNo, Mode=TwoWay}"   FontFamily="Segoe WP" />
+							</StackPanel>
 
-                        </Grid>
+						</Grid>
 
-                        <!--Address lines-->
-                        <Grid  Margin="10,-30,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+						<!--Address lines-->
+						<Grid  Margin="10,-30,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line1" 
-                                          Text="{Binding ItemInEditMode2.AddrLine1, Mode=TwoWay}" FontFamily="Segoe WP"/>
-                            </StackPanel>
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Address Line1" 
+										  Text="{Binding ItemInEditMode2.AddrLine1, Mode=TwoWay}" FontFamily="Segoe WP"/>
+							</StackPanel>
 
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox   Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                                            Text="{Binding ItemInEditMode2.AddrLine2, Mode=TwoWay}" materialDesign:HintAssist.Hint="Address Line2" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox   Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+											Text="{Binding ItemInEditMode2.AddrLine2, Mode=TwoWay}" materialDesign:HintAssist.Hint="Address Line2" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
 
-                        <!--City and Email-->
-                        <Grid  Margin="10,-30,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+						<!--City and Email-->
+						<Grid  Margin="10,-30,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="City" 
-                                           Text="{Binding ItemInEditMode2.AddrLine3, Mode=TwoWay}" FontFamily="Segoe WP"/>
-                            </StackPanel>
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="City" 
+										   Text="{Binding ItemInEditMode2.AddrLine3, Mode=TwoWay}" FontFamily="Segoe WP"/>
+							</StackPanel>
 
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email"
-                                          Text="{Binding ItemInEditMode2.Email, Mode=TwoWay}" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email"
+										  Text="{Binding ItemInEditMode2.Email, Mode=TwoWay}" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
 
-                        <!--Bank Details-->
-                        <TextBlock Margin="10,25,0,0" Text="Bank Details" FontSize="15" FontWeight="Bold" FontFamily="Segoe WP" />
-
-
-                        <Grid Margin="10,1,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+						<!--Bank Details-->
+						<TextBlock Margin="10,25,0,0" Text="Bank Details" FontSize="15" FontWeight="Bold" FontFamily="Segoe WP" />
 
 
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Bank Code" 
-                                          Text="{Binding ItemInEditMode2.BankCode, Mode=TwoWay}" FontFamily="Segoe WP"/>
-                            </StackPanel>
+						<Grid Margin="10,1,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Branch Code" 
-                                          Text="{Binding ItemInEditMode2.BranchCode, Mode=TwoWay}" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
 
-                        <!--Cheque name and Account no-->
-                        <Grid  Margin="10,-30,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Bank Code" 
+										  Text="{Binding ItemInEditMode2.BankCode, Mode=TwoWay}" FontFamily="Segoe WP"/>
+							</StackPanel>
 
-                            <StackPanel Grid.Column="0" Margin="10 10">
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Cheque Name" 
-                                          Text="{Binding ItemInEditMode2.ChequeName, Mode=TwoWay}" FontFamily="Segoe WP" />
-                            </StackPanel>
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Branch Code" 
+										  Text="{Binding ItemInEditMode2.BranchCode, Mode=TwoWay}" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
 
-                            <StackPanel Grid.Column="1" Margin="-50 10 0 30" >
-                                <TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Account Number"
-                                           Text="{Binding ItemInEditMode2.AccountNo, Mode=TwoWay}" FontFamily="Segoe WP" />
-                            </StackPanel>
-                        </Grid>
+						<!--Cheque name and Account no-->
+						<Grid  Margin="10,-30,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
 
-                        <Grid Margin="10,10,0,0">
+							<StackPanel Grid.Column="0" Margin="10 10">
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Cheque Name" 
+										  Text="{Binding ItemInEditMode2.ChequeName, Mode=TwoWay}" FontFamily="Segoe WP" />
+							</StackPanel>
 
-                            <DataGrid CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding TruckerDetails,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Name="dgSup"             
+							<StackPanel Grid.Column="1" Margin="-50 10 0 30" >
+								<TextBox  Margin="0,0,100,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Account Number"
+										   Text="{Binding ItemInEditMode2.AccountNo, Mode=TwoWay}" FontFamily="Segoe WP" />
+							</StackPanel>
+						</Grid>
+
+						<Grid Margin="10,10,0,0">
+
+							<DataGrid CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding TruckerDetails,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Name="dgSup"             
 								CellEditEnding="dgSup_CellEditEnding"
 								SelectionChanged="dgSup_SelectionChanged"
 								ScrollViewer.VerticalScrollBarVisibility="Auto"  
@@ -379,43 +379,56 @@
 								RowEditEnding="dgSup_RowEditEnding"
 								CanUserResizeColumns="True"
 								HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+								CanUserDeleteRows="True"
 								AlternatingRowBackground="#FF6D6F98" BorderThickness="1,1,1,1" GridLinesVisibility="All" HorizontalGridLinesBrush="#FF565F9B" VerticalGridLinesBrush="#FF565F9B" RowHeight="50" Background="White" BorderBrush="#FF4F4F7F" Foreground="Black" >
 
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Truck Id" Width="100" IsReadOnly="True" Binding="{Binding TruckId}"/>
-                                    <DataGridTextColumn Header="Truck Type" Width="100"  Binding="{Binding TruckType}" />
-                                    <DataGridTextColumn Header="Truck Size" Width="100" Binding="{Binding TruckSize}"  />
-                                    <DataGridTextColumn Header="Status"  Width="100" Binding="{Binding Status}" />
-                                    <DataGridTextColumn Header="Registered Date" IsReadOnly="True"  Width="100" Binding="{Binding JoinDate , StringFormat=dd.MM.yyyy}" />
+								<DataGrid.Columns>
+									<DataGridTextColumn  Header="Truck Id" Width="100" IsReadOnly="True" Binding="{Binding TruckId}"/>
+									<DataGridTextColumn Header="Truck Type" Width="100"  Binding="{Binding TruckType}" />
+									<DataGridTextColumn Header="Truck Size" Width="100" Binding="{Binding TruckSize}"  />
+									<DataGridTextColumn Header="Status"  Width="100" Binding="{Binding Status}" />
+									<DataGridTextColumn Header="Registered Date" IsReadOnly="True"  Width="100" Binding="{Binding JoinDate , StringFormat=dd.MM.yyyy}" />
+									<DataGridTemplateColumn>
+										<DataGridTemplateColumn.CellTemplate>
+											<DataTemplate>
+												<Button x:Name="update_btn" Click="update_btn_Click" Margin="0,-10" >
+													<StackPanel Orientation="Horizontal" >
+														<materialDesign:PackIcon Kind="Update" VerticalAlignment="Center" />
+														<TextBlock Text="Update" HorizontalAlignment="Center"  FontFamily="Nyala" Margin="10,0,0,0" />
+													</StackPanel>
+												</Button>
+											</DataTemplate>
+										</DataGridTemplateColumn.CellTemplate>
+									</DataGridTemplateColumn>
                                     <DataGridTemplateColumn>
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button x:Name="update_btn" Click="update_btn_Click" Margin="0,-10" >
+                                                <Button Name="delete_btn" Click="sup_delete_btn_Click" Margin="0,-10" >
                                                     <StackPanel Orientation="Horizontal" >
-                                                        <materialDesign:PackIcon Kind="Update" VerticalAlignment="Center" />
-                                                        <TextBlock Text="Update" HorizontalAlignment="Center"  FontFamily="Nyala" Margin="10,0,0,0" />
+                                                        <materialDesign:PackIcon Kind="Delete" VerticalAlignment="Center" />
+                                                        <TextBlock Text="Delete" HorizontalAlignment="Center"  FontFamily="Nyala" Margin="10,0,0,0" />
                                                     </StackPanel>
                                                 </Button>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
                                 </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
+							</DataGrid>
+						</Grid>
  
-                        <Grid  Margin="10,20,0,0">
-                            <StackPanel  Margin="-50 10 0 30" >
-                                <Button x:Name="update" Command="{Binding SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
-                            </StackPanel>
-                        </Grid>
+						<Grid  Margin="10,20,0,0">
+							<StackPanel  Margin="-50 10 0 30" >
+								<Button x:Name="update" Command="{Binding SaveCommand}" Margin="100 0 30 0" Grid.Column="0" Content="Register" Background="#FF070D3A" BorderBrush="#FF0B0F1F"/>
+							</StackPanel>
+						</Grid>
 
-                        <Grid Margin="10,10,0,0"/>
-                    </StackPanel>
-                </TabItem>
+						<Grid Margin="10,10,0,0"/>
+					</StackPanel>
+				</TabItem>
 
-                <TabItem Header="Delete"/>
-            </dragablz:TabablzControl>
+				<TabItem Header="Delete"/>
+			</dragablz:TabablzControl>
 
-        </StackPanel>
-    </Border>
+		</StackPanel>
+	</Border>
 </UserControl>

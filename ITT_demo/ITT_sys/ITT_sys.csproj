@@ -130,6 +130,7 @@
     <Compile Include="Views\BankRecordsView.xaml.cs">
       <DependentUpon>BankRecordsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BindingListCollectionView.cs" />
     <Compile Include="Views\BranchRecordsView.xaml.cs">
       <DependentUpon>BranchRecordsView.xaml</DependentUpon>
     </Compile>
@@ -151,6 +152,7 @@
     <Compile Include="Views\SupplierRegisterView.xaml.cs">
       <DependentUpon>SupplierRegisterView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\var.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />

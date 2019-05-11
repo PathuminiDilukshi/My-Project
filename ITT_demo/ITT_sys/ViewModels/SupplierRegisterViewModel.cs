@@ -401,6 +401,7 @@ namespace ITT_sys.ViewModels
                 string query = "DELETE FROM Trucker_Details where TruckId ='" + truckId + "'";
                
                 int noline = DB_Con.insert_del_update(query);
+
                 if (noline > 0)
                 {
                     MessageBox.Show("Row Deleted!");
@@ -700,7 +701,7 @@ namespace ITT_sys.ViewModels
                 DB_Con.OpenCon();
                 DB_Con.com = new SqlCommand();
                 DB_Con.com.Connection = DB_Con.con;
-                string query = "UPDATE Trucker_Details SET Truck_size ='" + objSupToAdd.TruckSize.Trim() + "',Truck_Type ='" + objSupToAdd.TruckType.Trim() + "',Join_date = '" + objSupToAdd.JoinDate + "',Status='" + objSupToAdd.Status.Trim() + "'  where sup_code='" + supcode + "'";
+                string query = "UPDATE Trucker_Details SET Truck_size ='" + objSupToAdd.TruckSize.Trim() + "',Truck_Type ='" + objSupToAdd.TruckType.Trim() + "',Join_date = '" + objSupToAdd.JoinDate + "',Status='" + objSupToAdd.Status.Trim() + "'  where sup_code='" + supcode + "' and TruckId ='" + objSupToAdd.TruckId + "'";
 
                 int noline = DB_Con.insert(query);
 
